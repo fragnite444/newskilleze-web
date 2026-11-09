@@ -1,0 +1,223 @@
+/* Skilleze — Home page lower sections (premium clean).  */
+
+/* ---------- shared scaffolding ---------- */
+html.home-v2 .hv-sec,
+html.home-v2 .hv-wrapw {
+  width: min(1320px, calc(100% - 2 * clamp(20px, 4vw, 48px)));
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: 0 !important;
+}
+html.home-v2 .hv-sec { padding-block: clamp(48px, 6vw, 88px) !important; }
+html.home-v2 :is(.hv-facts, .hv-links > section)::before { display: none !important; }
+
+/* text tokens inside lower sections + footer */
+html.home-v2 :is(main, footer) .text-\[var\(--text-primary\)\] { color: var(--hv-text); }
+html.home-v2 :is(main, footer) .text-\[var\(--text-muted\)\] { color: var(--hv-text2); }
+html.home-v2 :is(main, footer) :is(.text-\[var\(--gold-text\)\], .text-\[var\(--cyan-500\)\], .text-\[var\(--emerald-500\)\]) { color: var(--hv-primary) !important; }
+
+/* one card recipe — same as the hero cards */
+html.home-v2 :is(.hv-strip-item, .hv-facts, .hv-ccard, .hv-tcard, .hv-step, .hv-panel, .hv-guide, .hv-cta-sec) {
+  background:
+    radial-gradient(120% 90% at 100% 0%, var(--hv-sheen) 0%, transparent 56%),
+    linear-gradient(160deg, var(--hv-card-a), var(--hv-card-b)) !important;
+  border: 1.5px solid var(--hv-border) !important;
+  box-shadow: 0 26px 50px -34px var(--hv-card-shadow), 0 2px 8px -4px var(--hv-card-shadow);
+  color: var(--hv-text);
+}
+
+/* pills */
+html.home-v2 main :is(.hv-head, .hv-panel, .hv-guide, .hv-cta-sec, .hv-facts, .hv-ccard, .hv-links) :is(span, div).rounded-full:not(.w-12):not(.w-8),
+html.home-v2 main .hv-links :is(span.text-xs) {
+  background: var(--hv-pill-bg) !important;
+  border: 1px solid var(--hv-pill-border) !important;
+  color: var(--hv-pill-text) !important;
+  padding: 6px 14px !important;
+  font-size: 12.5px !important;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+html.home-v2 main .hv-links span.text-xs { background: none !important; border: 0 !important; padding: 0 !important; }
+
+/* section headings */
+html.home-v2 main :is(.hv-head, .hv-guide, .hv-panel, .hv-cta-sec) h2,
+html.home-v2 main .hv-links h2 {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.75rem, 3.1vw, 2.6rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  color: var(--hv-text);
+  text-wrap: balance;
+}
+html.home-v2 main .hv-panel h2 { font-size: clamp(2rem, 3.8vw, 3.2rem) !important; }
+html.home-v2 main .hv-links h2 { font-size: clamp(1.5rem, 2.2vw, 1.9rem) !important; }
+html.home-v2 main :is(.hv-head, .hv-guide, .hv-panel, .hv-cta-sec) p { font-size: 1.0625rem; line-height: 1.6; letter-spacing: -.01em; color: var(--hv-text2); }
+html.home-v2 main .hv-head p { max-width: 38rem; margin-inline: auto; }
+html.home-v2 main .hv-head { gap: 14px; }
+
+/* ---------- 1. trust strip ---------- */
+html.home-v2 .hv-strip { background: transparent !important; border: 0 !important; margin: 8px 0 0 !important; padding: 0 !important; }
+html.home-v2 .hv-strip-grid { width: min(1320px, calc(100% - 2 * clamp(20px, 4vw, 48px))); max-width: none; padding-inline: 0; gap: 24px; }
+html.home-v2 .hv-strip-item { padding: 20px 26px !important; border-radius: 26px; gap: 18px; }
+html.home-v2 .hv-ico {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--hv-icon-bg) !important; border: 1px solid var(--hv-icon-border) !important; color: var(--hv-primary) !important;
+}
+html.home-v2 .hv-strip-item h4 { font-size: 15.5px; letter-spacing: -.01em; color: var(--hv-text); }
+html.home-v2 .hv-strip-item p { font-size: 13.5px; color: var(--hv-text2); }
+
+/* ---------- 2. key facts ---------- */
+html.home-v2 .hv-wrapw:has(> .hv-facts) { padding-top: clamp(40px, 5vw, 72px) !important; }
+html.home-v2 .hv-facts { padding: 32px 38px !important; border-radius: 30px; }
+html.home-v2 .hv-facts > div:first-child { border-bottom: 1px solid var(--hv-line) !important; padding-bottom: 18px; margin-bottom: 24px; }
+html.home-v2 .hv-facts .grid { gap: 28px 36px; font-size: 14.5px; }
+html.home-v2 .hv-facts .grid > div { align-items: center; gap: 14px; }
+html.home-v2 .hv-facts .grid svg {
+  width: 42px !important; height: 42px !important; padding: 11px; border-radius: 50%; margin: 0 !important;
+  background: var(--hv-icon-bg); border: 1px solid var(--hv-icon-border);
+}
+html.home-v2 .hv-facts .grid span.block { font-size: 11px !important; letter-spacing: .09em; color: var(--hv-text2) !important; margin-bottom: 3px; }
+html.home-v2 .hv-facts .grid span:not(.block) { font-size: 15px; font-weight: 600; color: var(--hv-text); }
+
+/* ---------- 3. courses spotlight ---------- */
+html.home-v2 .hv-courses { gap: 0; }
+html.home-v2 .hv-courses > * + * { margin-top: clamp(32px, 4vw, 52px); }
+html.home-v2 .hv-ccard {
+  padding: 30px !important; border-radius: 30px !important;
+  transition: transform .4s cubic-bezier(.16, 1, .3, 1), box-shadow .4s ease, border-color .3s ease;
+}
+html.home-v2 .hv-ccard:hover { transform: translateY(-6px); border-color: var(--hv-primary) !important; box-shadow: 0 34px 60px -32px var(--hv-card-shadow), 0 0 0 1px var(--hv-icon-bg); }
+html.home-v2 .hv-ccard h3 { font-size: 1.5rem !important; letter-spacing: -.025em; line-height: 1.15; color: var(--hv-text) !important; margin-bottom: 12px !important; }
+html.home-v2 .hv-ccard p { font-size: 15px !important; line-height: 1.6; color: var(--hv-text2) !important; }
+html.home-v2 .hv-ccard span.rounded-md {
+  background: var(--hv-icon-bg) !important; border: 1px solid var(--hv-icon-border) !important; color: var(--hv-primary) !important;
+  border-radius: 999px; padding: 4px 12px; font-size: 12px; font-weight: 600;
+}
+html.home-v2 .hv-ccard a.inline-flex {
+  padding: 20px 0 0 !important; border: 0 !important; border-top: 1px solid var(--hv-line) !important; border-radius: 0 !important;
+  font-size: 15px; color: var(--hv-text) !important; background: none !important; box-shadow: none !important; transform: none !important;
+}
+html.home-v2 .hv-ccard a.inline-flex svg {
+  width: 38px !important; height: 38px !important; padding: 9px; border-radius: 50%;
+  border: 1.5px solid var(--hv-primary); color: var(--hv-primary);
+  transition: background-color .25s ease, color .25s ease;
+}
+html.home-v2 .hv-ccard:hover a.inline-flex svg { background: var(--hv-primary); color: var(--hv-btn-text); }
+
+/* outline + filled pill buttons */
+html.home-v2 .hv-more button {
+  height: 52px; padding: 0 32px !important; font-size: 15.5px !important;
+  background: transparent !important; color: var(--hv-primary) !important; border: 1.5px solid var(--hv-primary) !important; box-shadow: none !important;
+}
+html.home-v2 .hv-more button:hover { background: var(--hv-primary) !important; color: var(--hv-btn-text) !important; transform: translateY(-2px); }
+html.home-v2 main :is(.hv-guide, .hv-panel, .hv-cta-sec) a[href^="/"] > button {
+  height: 54px; padding: 0 32px !important; font-size: 16px !important; font-weight: 700;
+  background: linear-gradient(135deg, var(--hv-btn-a), var(--hv-btn-b)) !important;
+  color: var(--hv-btn-text) !important; border: 0 !important;
+  box-shadow: 0 14px 34px -12px var(--hv-btn-glow) !important;
+}
+html.home-v2 main :is(.hv-guide, .hv-panel, .hv-cta-sec) a[href^="/"] > button:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -12px var(--hv-btn-glow) !important; }
+html.home-v2 .hv-cta-sec a[href*="wa.me"] { height: 54px; padding: 0 28px !important; border-radius: 999px !important; }
+
+/* ---------- 4. guidance ---------- */
+html.home-v2 .hv-guide {
+  width: min(1000px, calc(100% - 2 * clamp(20px, 4vw, 48px)));
+  max-width: none !important; padding: clamp(40px, 5vw, 72px) clamp(24px, 4vw, 64px) !important;
+  margin-block: clamp(24px, 4vw, 56px) !important; border-radius: 38px !important; gap: 20px;
+}
+html.home-v2 .hv-guide > * { margin-top: 0 !important; }
+
+/* ---------- 5. about ---------- */
+html.home-v2 .hv-panel { border-radius: 40px !important; padding: clamp(32px, 5vw, 72px) !important; }
+html.home-v2 .hv-panel > .text-center > p.text-base { font-size: 1.125rem; }
+html.home-v2 .hv-panel p.text-sm.font-medium { font-size: 15px; color: var(--hv-primary) !important; font-weight: 500; }
+html.home-v2 .hv-step { padding: 24px 18px !important; border-radius: 24px !important; box-shadow: none; transition: transform .35s cubic-bezier(.16, 1, .3, 1), border-color .3s ease; }
+html.home-v2 .hv-step:hover { transform: translateY(-4px); border-color: var(--hv-primary) !important; }
+html.home-v2 .hv-step span { font-size: 13px !important; letter-spacing: .08em; color: var(--hv-primary) !important; }
+html.home-v2 .hv-step p { font-size: 14px !important; color: var(--hv-text2) !important; }
+
+/* ---------- 6. linking matrix ---------- */
+html.home-v2 .hv-links { padding-bottom: clamp(24px, 4vw, 48px) !important; }
+html.home-v2 .hv-links > section { position: relative; border-top: 0 !important; padding-top: 44px; }
+html.home-v2 .hv-links > section::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--hv-line); transform-origin: left center; }
+html.home-v2 .hv-links .grid:empty { display: none; }
+
+/* ---------- 7. CTA ---------- */
+html.home-v2 .hv-cta-sec {
+  padding: clamp(48px, 6vw, 88px) clamp(24px, 4vw, 64px) !important; border-radius: 40px !important; margin-block: clamp(32px, 5vw, 72px) !important;
+  background:
+    radial-gradient(70% 110% at 50% 0%, var(--hv-disc-a) 0%, transparent 70%),
+    linear-gradient(160deg, var(--hv-card-a), var(--hv-card-b)) !important;
+}
+html.home-v2 .hv-cta-sec > div.absolute { background: linear-gradient(90deg, transparent, var(--hv-primary), transparent) !important; height: 2px !important; opacity: .85; }
+html.home-v2 .hv-cta-sec h2 { font-size: clamp(1.9rem, 3.6vw, 3rem) !important; }
+
+/* ---------- 8. trust ---------- */
+html.home-v2 .hv-trust { position: relative; background: transparent !important; border-block: 0 !important; padding-block: clamp(56px, 7vw, 96px) !important; }
+html.home-v2 .hv-trust::before, html.home-v2 .hv-trust::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: var(--hv-line); transform-origin: left center; }
+html.home-v2 .hv-trust::before { top: 0; }
+html.home-v2 .hv-trust::after { bottom: 0; }
+html.home-v2 .hv-trust > div { width: min(1320px, calc(100% - 2 * clamp(20px, 4vw, 48px))); max-width: none; padding-inline: 0; }
+html.home-v2 .hv-tcard { padding: 38px 30px !important; border-radius: 30px !important; gap: 14px; transition: transform .4s cubic-bezier(.16, 1, .3, 1), border-color .3s ease; }
+/* certificate / trust cards: intentionally no hover effect */
+html.home-v2 .hv-tcard > div.w-12 { width: 64px !important; height: 64px !important; margin-bottom: 6px; background: var(--hv-icon-bg) !important; border: 1px solid var(--hv-icon-border); color: var(--hv-primary) !important; }
+html.home-v2 .hv-tcard h3 { font-size: 1.35rem; letter-spacing: -.02em; font-weight: 700; color: var(--hv-text); }
+html.home-v2 .hv-tcard p.text-xs { font-size: 14.5px; line-height: 1.6; color: var(--hv-text2); }
+html.home-v2 .hv-tcard p.text-\[10px\], html.home-v2 .hv-tcard div.text-xs { font-size: 12px; letter-spacing: .08em; }
+html.home-v2 .hv-tcard .-space-x-2 > div { border-color: var(--hv-card-a) !important; background: var(--hv-icon-bg) !important; color: var(--hv-text2); width: 36px; height: 36px; }
+html.home-v2 .hv-trust .hv-head > p { color: var(--hv-text2); }
+
+/* ---------- 9. footer ---------- */
+html.home-v2 .hv-footer { position: relative; background: var(--hv-bg) !important; border-top: 0 !important; padding-top: clamp(56px, 6vw, 88px) !important; }
+html.home-v2 .hv-footer > div { width: min(1320px, calc(100% - 2 * clamp(20px, 4vw, 48px))); max-width: none; padding-inline: 0; }
+html.home-v2 .hv-footer h3 { color: var(--hv-text) !important; font-size: 12px; letter-spacing: .12em; border-bottom: 1px solid var(--hv-line) !important; padding-bottom: 14px; }
+html.home-v2 .hv-footer :is(ul, .text-xs) { font-size: 13.5px; }
+html.home-v2 .hv-footer ul { row-gap: 11px; }
+html.home-v2 .hv-footer a { color: var(--hv-text2); transition: color .2s ease, transform .2s ease; }
+html.home-v2 .hv-footer a:hover { color: var(--hv-primary) !important; }
+html.home-v2 .hv-footer a.font-bold { color: var(--hv-primary) !important; }
+html.home-v2 .hv-footer svg { color: var(--hv-primary) !important; }
+html.home-v2 .hv-footer > div:last-child { border-top: 1px solid var(--hv-line) !important; }
+
+@media (max-width: 640px) {
+  html.home-v2 .hv-facts { padding: 24px 22px !important; }
+  html.home-v2 .hv-ccard, html.home-v2 .hv-tcard { padding: 26px 22px !important; }
+}
+
+/* ---------- refinements ---------- */
+html.home-v2 .hv-ccard a.inline-flex { justify-content: space-between !important; width: 100%; }
+html.home-v2 .hv-head { max-width: 52rem; }
+html.home-v2 .hv-guide { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+html.home-v2 .hv-guide > p { max-width: 40rem; }
+html.home-v2 .hv-guide > div:not(:first-child) { margin-top: 10px !important; }
+@media (min-width: 1024px) { html.home-v2 .hv-panel .grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; } }
+html.home-v2[data-theme="light"] .hv-strip { background: transparent !important; }
+html.home-v2 .hv-head { margin-inline: auto; }
+html.home-v2[data-theme="light"] .hv-cta-sec { box-shadow: 0 30px 60px -40px rgba(109, 40, 217, .35), 0 2px 8px -4px rgba(109, 40, 217, .15) !important; }
+
+
+/* ---------- scroll-drawn hairlines (transform only) ---------- */
+html.home-v2 .hv-footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--hv-line); transform-origin: left center; }
+@supports selector(:has(*)) {
+  html.js .hv-links > section::before,
+  html.js .hv-trust::before, html.js .hv-trust::after,
+  html.js .hv-footer::before { transform: scaleX(0); }
+  html.js .hv-links.is-in > section::before,
+  html.js .hv-trust:has(.hv-head.is-in)::before, html.js .hv-trust:has(.hv-head.is-in)::after,
+  html.js .hv-footer:has(.hv-fcol.is-in)::before { animation: hv-line .9s cubic-bezier(.16, 1, .3, 1) forwards; }
+}
+html.js .hv-cta-sec.is-in > div.absolute { animation: hv-line 1.1s cubic-bezier(.16, 1, .3, 1) .2s backwards; transform-origin: center; }
+
+/* ---------- below-the-fold rendering cost ---------- */
+html.home-v2 :is(.hv-courses, .hv-about, .hv-cta-sec, .hv-trust, .hv-footer) { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+
+/* ---------- hover only on real pointers; transform / colour only ---------- */
+@media (hover: none) {
+  html.home-v2 .hv-ccard:hover, html.home-v2 .hv-step:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.home-v2 .hv-cta-sec > div.absolute { animation: none !important; }
+  html.js .hv-links > section::before, html.js .hv-trust::before, html.js .hv-trust::after, html.js .hv-footer::before { transform: none; animation: none !important; }
+}

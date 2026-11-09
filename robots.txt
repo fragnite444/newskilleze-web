@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /_not-found.html
+Disallow: /design-system.html
+Disallow: /thank-you.html
+
+Sitemap: https://www.skilleze-digiteease.com/sitemap.xml

@@ -1,0 +1,608 @@
+/**
+ * Skilleze Technologies — Home page (hero + dark/light theme system)
+ * Loaded ONLY by index.html, after style.css and design-system.css.
+ * Everything is scoped under html.home-v2 so no other page is affected.
+ */
+
+/* ==========================================================================
+   0. Self-hosted fonts (same family names as css/style.css, declared later so
+      they win; the old /_next/static/media/*.woff2 files do not exist here)
+   ========================================================================== */
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 200 800; font-display: swap; src: url(/assets/fonts/plus-jakarta-sans-latin-ext-wght-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 200 800; font-display: swap; src: url(/assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap; src: url(/assets/fonts/inter-latin-ext-wght-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap; src: url(/assets/fonts/inter-latin-wght-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
+/* ==========================================================================
+   1. Registered colour tokens — only the 8 that carry the theme swap.
+      Everything else simply snaps (the View Transitions cross-fade hides it;
+      browsers without it use the 350ms fallback below).
+   ========================================================================== */
+@property --hv-bg        { syntax: '<color>'; inherits: true; initial-value: #09090B; }
+@property --hv-card-a    { syntax: '<color>'; inherits: true; initial-value: #131418; }
+@property --hv-card-b    { syntax: '<color>'; inherits: true; initial-value: #0E0F13; }
+@property --hv-sheen     { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --hv-primary   { syntax: '<color>'; inherits: true; initial-value: #A78BFA; }
+@property --hv-text      { syntax: '<color>'; inherits: true; initial-value: #F5F6F8; }
+@property --hv-text2     { syntax: '<color>'; inherits: true; initial-value: #9AA1AE; }
+@property --hv-border    { syntax: '<color>'; inherits: true; initial-value: #000; }
+
+/* ==========================================================================
+   2. Theme tokens
+   ========================================================================== */
+/* DARK (default) */
+html.home-v2 {
+  color-scheme: dark;
+
+  --hv-bg: #09090B;
+  --hv-bg-rgb: 5, 9, 7;
+  --hv-card-a: #131418;
+  --hv-card-b: #0E0F13;
+  --hv-sheen: rgba(139, 92, 246, 0.16);
+  --hv-primary: #A78BFA;
+  --hv-secondary: #C4B5FD;
+  --hv-text: #F5F6F8;
+  --hv-text2: #9AA1AE;
+  --hv-border: rgba(139, 92, 246, 0.42);
+  --hv-line: rgba(168, 179, 173, 0.16);
+
+  --hv-pill-bg: rgba(139, 92, 246, 0.10);
+  --hv-pill-border: rgba(139, 92, 246, 0.40);
+  --hv-pill-text: #A78BFA;
+
+  --hv-btn-a: #A78BFA;
+  --hv-btn-b: #C4B5FD;
+  --hv-btn-text: #FFFFFF;
+  --hv-btn-glow: rgba(139, 92, 246, 0.32);
+
+  --hv-icon-bg: rgba(139, 92, 246, 0.08);
+  --hv-icon-border: rgba(139, 92, 246, 0.34);
+  --hv-card-shadow: rgba(0, 0, 0, 0.55);
+  --hv-checkmark: #FFFFFF;
+
+  --hv-disc-a: rgba(139, 92, 246, 0.26);
+  --hv-disc-b: rgba(139, 92, 246, 0.04);
+  --hv-disc-rim: rgba(139, 92, 246, 0.42);
+  --hv-blob-a: rgba(139, 92, 246, 0.34);
+  --hv-blob-b: rgba(139, 92, 246, 0.02);
+  --hv-orbit: rgba(139, 92, 246, 0.22);
+
+  --hv-tg-bg: rgba(11, 21, 16, 0.9);
+  --hv-tg-border: rgba(139, 92, 246, 0.38);
+  --hv-tg-thumb: #C4B5FD;
+  --hv-sun: #FFFFFF;
+  --hv-moon: #F5F6F8;
+
+  /* Re-point the legacy tokens the lower sections of this page already use */
+  --surface-950: #09090B;
+}
+
+/* LIGHT */
+html.home-v2[data-theme="light"] {
+  color-scheme: light;
+
+  --hv-bg: #F8F7FC;
+  --hv-bg-rgb: 247, 250, 248;
+  --hv-card-a: #FFFFFF;
+  --hv-card-b: #FFFFFF;
+  --hv-sheen: rgba(109, 40, 217, 0.20);
+  --hv-primary: #6D28D9;
+  --hv-secondary: #7C3AED;
+  --hv-text: #111C17;
+  --hv-text2: #66736C;
+  --hv-border: rgba(109, 40, 217, 0.16);
+  --hv-line: rgba(17, 28, 23, 0.08);
+
+  --hv-pill-bg: rgba(109, 40, 217, 0.22);
+  --hv-pill-border: rgba(109, 40, 217, 0.10);
+  --hv-pill-text: #6D28D9;
+
+  --hv-btn-a: #6D28D9;
+  --hv-btn-b: #7C3AED;
+  --hv-btn-text: #FFFFFF;
+  --hv-btn-glow: rgba(109, 40, 217, 0.30);
+
+  --hv-icon-bg: rgba(109, 40, 217, 0.20);
+  --hv-icon-border: rgba(109, 40, 217, 0.06);
+  --hv-card-shadow: rgba(109, 40, 217, 0.22);
+  --hv-checkmark: #FFFFFF;
+
+  --hv-disc-a: rgba(109, 40, 217, 0.34);
+  --hv-disc-b: rgba(109, 40, 217, 0.04);
+  --hv-disc-rim: rgba(109, 40, 217, 0.16);
+  --hv-blob-a: rgba(109, 40, 217, 0.42);
+  --hv-blob-b: rgba(109, 40, 217, 0.04);
+  --hv-orbit: rgba(109, 40, 217, 0.26);
+
+  --hv-tg-bg: #FFFFFF;
+  --hv-tg-border: rgba(17, 28, 23, 0.10);
+  --hv-tg-thumb: #E6ECE8;
+  --hv-sun: #F2A413;
+  --hv-moon: #4C5A53;
+
+  /* ---- Light mapping for the sections below the hero ------------------
+     design-system.css builds almost everything from these --sk-* / legacy
+     tokens (many with !important), so re-pointing them here flips the rest
+     of the home page without touching that file or any other page. */
+  --sk-black: #F8F7FC;
+  --sk-graphite: #FFFFFF;
+  --sk-slate: #EEF4F0;
+  --sk-border: #DCE6E0;
+  --sk-text-primary: #111C17;
+  --sk-text-secondary: #3F4E46;
+  --sk-text-muted: #66736C;
+  --sk-cyan: #6D28D9;
+  --sk-green: #7C3AED;
+  --sk-gold: #6D28D9;
+
+  --surface-950: #F8F7FC;
+  --surface-900: #FFFFFF;
+  --surface-850: #F1F6F3;
+  --surface-800: #E6EEE9;
+  --surface-700: #D5E0D9;
+  --line: #DCE6E0;
+  --line-strong: #C5D3CA;
+  --text-primary: #111C17;
+  --text-secondary: #3F4E46;
+  --text-muted: #66736C;
+  --cyan-500: #6D28D9;
+  --cyan-400: #7C3AED;
+  --cyan-600: #5B21B6;
+  --emerald-500: #6D28D9;
+  --emerald-400: #7C3AED;
+  --gold-400: #6D28D9;
+  --gold-500: #5B21B6;
+  --gold-text: #6D28D9;
+  --shadow-card: 0 10px 30px -12px rgba(109, 40, 217, 0.22), 0 0 0 1px rgba(17, 28, 23, 0.05);
+  --shadow-card-hover: 0 20px 40px -14px rgba(109, 40, 217, 0.30), 0 0 0 1px rgba(109, 40, 217, 0.25);
+  --shadow-md: 0 8px 24px -8px rgba(109, 40, 217, 0.18);
+  --shadow-lg: 0 16px 40px -12px rgba(109, 40, 217, 0.22);
+}
+
+/* Fallback (no View Transitions API): 350ms token transition on theme swap */
+html.home-v2 {
+  transition:
+    --hv-bg .35s ease, --hv-card-a .35s ease, --hv-card-b .35s ease, --hv-sheen .35s ease,
+    --hv-primary .35s ease, --hv-text .35s ease, --hv-text2 .35s ease, --hv-border .35s ease;
+}
+html.home-v2.hv-theming *,
+html.home-v2.hv-theming *::before,
+html.home-v2.hv-theming *::after {
+  transition-property: background-color, color, border-color, fill, stroke, opacity !important;
+  transition-duration: .35s !important;
+  transition-timing-function: ease !important;
+  transition-delay: 0s !important;
+}
+/* View Transitions path: one clean cross-fade, no per-element transitions fighting it */
+html.hv-vt, html.hv-vt *, html.hv-vt *::before, html.hv-vt *::after { transition: none !important; }
+html.hv-vt::view-transition-group(root) { animation-duration: .38s; }
+html.hv-vt::view-transition-old(root), html.hv-vt::view-transition-new(root) { animation-duration: .38s; animation-timing-function: ease; }
+
+/* ==========================================================================
+   3. Page base — remove the old cyan glow + grid overlay on this page only
+   ========================================================================== */
+html.home-v2 body { background-color: var(--hv-bg); color: var(--hv-text); overflow-x: clip; }
+html.home-v2 body::before,
+html.home-v2 body::after { display: none !important; }
+/* design-system.css pins every .bg-[var(--surface-950)] to #050608 with !important — let the theme win on this page */
+html.home-v2 .bg-\[var\(--surface-950\)\] { background-color: var(--hv-bg) !important; }
+html.home-v2 .min-h-screen.flex.flex-col { background-color: var(--hv-bg) !important; }
+/* contain decorative ::before glows of lower sections (400-800px wide) so phones never scroll sideways; `clip` keeps the sticky header working */
+html.home-v2 body > div.min-h-screen { overflow-x: clip; }
+
+/* ==========================================================================
+   4. Header / navbar (same markup + dropdowns, new skin)
+   ========================================================================== */
+html.home-v2 body > div > header {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
+  margin-bottom: -86px;                 /* nav floats over the hero art … */
+  transition: transform .3s cubic-bezier(.16, 1, .3, 1);
+}
+html.home-v2 body > div > header.scrolled { background: transparent !important; border: 0 !important; box-shadow: none !important; }
+/* colour fade: opaque behind the nav row, melts into the page below (pseudo-elements, NOT a mask on the header, so dropdowns are never clipped) */
+html.home-v2 body > div > header::before,
+html.home-v2 body > div > header::after {
+  content: ""; position: absolute; inset: 0 0 -36px; pointer-events: none;
+  opacity: 0; transition: opacity .3s ease;
+}
+html.home-v2 body > div > header::before {
+  z-index: -1;
+  background: linear-gradient(to bottom, var(--hv-bg) 0%, rgba(var(--hv-bg-rgb), .78) 55%, rgba(var(--hv-bg-rgb), 0) 100%);
+}
+/* faint blur that fades out with the layer — desktop pointers only (phones keep the colour fade, which is free) */
+@media (hover: hover) and (pointer: fine) {
+  html.home-v2 body > div > header::after {
+    z-index: -2;
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    -webkit-mask-image: linear-gradient(#000 35%, transparent); mask-image: linear-gradient(#000 35%, transparent);
+  }tail
+}
+html.home-v2 body > div > header.scrolled::before,
+html.home-v2 body > div > header.scrolled::after { opacity: 1; }
+/* hide on scroll down / reveal on scroll up (class set by js/home.js; never while a menu/focus is active) */
+html.home-v2 body > div > header.hv-nav-hidden { transform: translateY(-100%); }
+html.home-v2 body > div > header.hv-nav-hidden::before,
+html.home-v2 body > div > header.hv-nav-hidden::after { opacity: 0; }
+html.home-v2 body > div > header.hv-nav-hidden:focus-within { transform: none; }
+html.home-v2 #mobile-menu { background-color: var(--hv-bg) !important; border-top: 1px solid var(--hv-line); }
+html.home-v2 body > div > header > div:first-child {
+  height: 86px;
+  max-width: none;
+  width: min(1320px, calc(100% - 2 * clamp(20px, 4vw, 48px)));
+  padding-inline: 0;
+}
+
+html.home-v2 body > div > header nav > a,
+html.home-v2 body > div > header nav > .group > a {
+  color: var(--hv-text);
+  font-weight: 500;
+}
+html.home-v2 body > div > header nav a:hover { color: var(--hv-primary) !important; }
+html.home-v2 body > div > header nav svg.lucide-chevron-down { color: var(--hv-primary); }
+
+/* Apply Now */
+html.home-v2 body > div > header button.hv-apply,
+html.home-v2 #mobile-menu button.hv-apply {
+  gap: 8px;
+  height: 44px;
+  padding: 0 22px !important;
+  font-size: 15px !important;
+  font-weight: 700;
+  color: var(--hv-btn-text) !important;
+  background: linear-gradient(135deg, var(--hv-btn-a), var(--hv-btn-b)) !important;
+  border: 0 !important;
+  box-shadow: 0 8px 22px -8px var(--hv-btn-glow) !important;
+}
+html.home-v2 body > div > header button.hv-apply:hover,
+html.home-v2 #mobile-menu button.hv-apply:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px var(--hv-btn-glow) !important;
+  background: linear-gradient(135deg, var(--hv-btn-a), var(--hv-btn-b)) !important;
+}
+html.home-v2 button.hv-apply svg { width: 16px; height: 16px; transition: transform .25s ease; }
+html.home-v2 button.hv-apply:hover svg { transform: translateX(3px); }
+html.home-v2 #mobile-menu button.hv-apply { width: 100%; justify-content: center; }
+
+/* Hamburger */
+html.home-v2 #mobile-menu-btn { border-color: var(--hv-line); color: var(--hv-text); padding: 10px !important; }
+html.home-v2 #mobile-menu-btn:hover { border-color: var(--hv-primary); }
+
+/* Theme toggle (sun / moon) */
+.hv-theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  width: 72px;
+  height: 38px;
+  padding: 0 7px !important; /* global ≤480px rule forces padding on every <button> */
+  min-width: 0;
+  border-radius: 999px;
+  border: 1px solid var(--hv-tg-border);
+  background: var(--hv-tg-bg);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.hv-theme-toggle:hover { box-shadow: 0 0 0 3px var(--hv-icon-bg); }
+.hv-theme-toggle:focus-visible { outline: 2px solid var(--hv-primary); outline-offset: 3px; }
+.hv-tg-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--hv-tg-thumb);
+  box-shadow: 0 0 14px -2px var(--hv-btn-glow);
+  transition: transform .35s cubic-bezier(.16, 1, .3, 1);
+}
+html.home-v2[data-theme="light"] .hv-tg-thumb { transform: translateX(34px); box-shadow: 0 2px 6px rgba(17, 28, 23, .12); }
+.hv-theme-toggle svg { position: relative; z-index: 1; width: 18px; height: 18px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.hv-theme-toggle .hv-sun  { stroke: var(--hv-sun);  margin-left: 5px; }
+.hv-theme-toggle .hv-moon { stroke: var(--hv-moon); margin-right: 5px; }
+html.home-v2[data-theme="light"] .hv-theme-toggle .hv-sun { fill: var(--hv-sun); }
+
+/* ==========================================================================
+   5. Hero
+   ========================================================================== */
+html.home-v2 section.hv-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  overflow: clip;
+  padding: 86px 0 0 !important;         /* … and the hero keeps its original position */
+  margin: 0;
+  max-width: none;
+  text-align: left;
+}
+html.home-v2 section.hv-hero::before { display: none !important; }
+
+.hv-wrap {
+  position: relative;
+  z-index: 1;
+  width: min(1320px, calc(100% - 2 * clamp(20px, 4vw, 48px)));
+  margin-inline: auto;
+}
+.hv-blob--tl { width: 420px; height: 420px; left: -300px; top: -164px; }
+.hv-blob--bl { width: 560px; height: 560px; left: -330px; bottom: -330px; }
+.hv-blob--br { width: 620px; height: 620px; right: -380px; bottom: calc(6% - 5px); }
+.hv-dots--a { right: clamp(8px, 3.6vw, 60px); top: 220px; }
+.hv-dots--b { left: 10px; top: 476px; width: 72px; height: 96px; }
+.hv-dots--c { left: 45px; top: 214px; }
+.hv-dots--d { right: 50px; bottom: 52px; }
+
+/* ----- top row ---------------------------------------------------------- */
+.hv-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  column-gap: 24px;
+  padding-top: 15px;
+}
+.hv-copy { position: relative; z-index: 2; padding-bottom: 62px; min-width: 0; }
+
+.hv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 16px 0 12px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  background: var(--hv-pill-bg);
+  border: 1px solid var(--hv-pill-border);
+  color: var(--hv-text);
+  font-family: var(--font-body, Inter, sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+}
+@media (max-width: 400px) {
+  .hv-badge { height: auto; min-height: 32px; padding-block: 7px; line-height: 1.25; font-size: 12.5px; }
+  html.home-v2 body > div > header a > img { height: 46px; }
+  .hv-theme-toggle { width: 60px; height: 34px; }
+  .hv-tg-thumb { width: 26px; height: 26px; }
+  html.home-v2[data-theme="light"] .hv-tg-thumb { transform: translateX(26px); }
+  .hv-theme-toggle svg { width: 16px; height: 16px; }tail
+}
+.hv-badge svg { width: 16px; height: 16px; fill: none; stroke: var(--hv-primary); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+html.home-v2 .hv-title {
+  margin: 0;
+  max-width: 11.1em;
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(2.6rem, 3.93vw, 4.1rem) !important;
+  font-weight: 700;
+  line-height: 1.03 !important;
+  letter-spacing: -0.006em;
+  color: var(--hv-text);
+  text-wrap: wrap;
+}
+.hv-accent { color: var(--hv-primary); }
+
+html.home-v2 .hv-lead {
+  margin: 20px 0 0;
+  max-width: 34em;
+  font-size: clamp(1rem, 1.08vw, 1.125rem);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--hv-text);
+  opacity: .92;
+}
+html.home-v2[data-theme="light"] .hv-lead { color: var(--hv-text2); opacity: 1; }
+
+.hv-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 56px;
+  min-width: 209px;
+  margin-top: 28px;
+  padding: 0 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--hv-btn-a), var(--hv-btn-b));
+  color: var(--hv-btn-text);
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  box-shadow: 0 14px 34px -12px var(--hv-btn-glow);
+  transition: transform .3s cubic-bezier(.16, 1, .3, 1), box-shadow .3s ease;
+}
+.hv-cta svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: transform .3s ease; }
+.hv-cta:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -12px var(--hv-btn-glow); }
+.hv-cta:hover svg { transform: translateX(4px); }
+.hv-cta:active { transform: translateY(0) scale(.98); }
+.hv-cta:focus-visible { outline: 2px solid var(--hv-primary); outline-offset: 4px; }
+.hv-layer--back { z-index: -1; }
+.hv-layer--arrow { z-index: 0; }
+.hv-person--light { opacity: 0; }
+html.home-v2[data-theme="light"] .hv-person--dark  { opacity: 0; }
+html.home-v2[data-theme="light"] .hv-person--light { opacity: 1; }
+
+/* ----- feature cards ---------------------------------------------------- */
+.hv-cards {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 37px;
+  padding-bottom: 50px;
+  align-items: stretch;
+}
+.hv-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  column-gap: 38px;
+  align-content: start;
+  min-height: 282px;
+  padding: 28px 88px 28px 30px;
+  border-radius: 38px;
+  border: 1.5px solid var(--hv-border);
+  background:
+    radial-gradient(120% 90% at 100% 0%, var(--hv-sheen) 0%, transparent 56%),
+    linear-gradient(160deg, var(--hv-card-a), var(--hv-card-b));
+  box-shadow: 0 26px 50px -30px var(--hv-card-shadow), 0 2px 8px -4px var(--hv-card-shadow);
+  color: var(--hv-text);
+  transition: transform .4s cubic-bezier(.16, 1, .3, 1), box-shadow .4s ease, border-color .3s ease;
+}
+.hv-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--hv-primary);
+  box-shadow: 0 34px 60px -30px var(--hv-card-shadow), 0 0 0 1px var(--hv-icon-bg);
+}
+
+.hv-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--hv-pill-bg);
+  border: 1px solid var(--hv-pill-border);
+  color: var(--hv-pill-text);
+  font-family: var(--font-body, Inter, sans-serif);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+html.home-v2 .hv-card-title {
+  margin: 12px 0 0;
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.3rem, 1.55vw, 1.625rem) !important;
+  font-weight: 700;
+  line-height: 1.08 !important;
+  letter-spacing: -0.03em;
+  color: var(--hv-text);
+  text-wrap: wrap;
+}
+.hv-nowrap { white-space: nowrap; }
+html.home-v2 .hv-card-desc {
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+  color: var(--hv-text);
+  opacity: .9;
+}
+html.home-v2[data-theme="light"] .hv-card-desc { color: var(--hv-text2); opacity: 1; }
+
+.hv-list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; row-gap: 9px; }
+.hv-list li { display: flex; align-items: center; gap: 12px; font-size: 14.5px; line-height: 20px; letter-spacing: -0.01em; color: var(--hv-text); }
+.hv-check { flex: none; width: 20px; height: 20px; }
+.hv-check circle { fill: var(--hv-primary); }
+.hv-check path { fill: none; stroke: var(--hv-checkmark); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ==========================================================================
+   6. Motion — subtle, one-shot, respects reduced motion
+   ========================================================================== */
+@keyframes hv-up    { from { opacity: 0; transform: translate3d(0, 24px, 0); } to { opacity: 1; transform: none; } }
+@keyframes hv-up-s  { from { opacity: 0; transform: translate3d(0, 24px, 0) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes hv-line  { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* scroll reveals (JS adds .is-in once; stagger = --i × --step, index capped at 5 in JS) */
+html.js .hv-reveal { opacity: 0; }
+html.js .hv-reveal.is-in {
+  opacity: 1;
+  animation: hv-up .9s cubic-bezier(.16, 1, .3, 1) calc(var(--i, 0) * var(--step, 90ms)) backwards;
+}
+html.js .hv-hero .hv-reveal { --step: 110ms; }
+html.js :is(.hv-card, .hv-strip-item, .hv-ccard, .hv-tcard, .hv-step).hv-reveal.is-in { animation-name: hv-up-s; }
+.hv-fact { --step: 60ms; }
+.hv-fcol { --step: 80ms; }
+/* section heading block: pill → h2 → paragraph, 3-step stagger */
+html.js .hv-head.hv-reveal, html.js .hv-head.hv-reveal.is-in { opacity: 1; animation: none; }
+html.js .hv-head.hv-reveal > * { opacity: 0; }
+html.js .hv-head.hv-reveal.is-in > * { opacity: 1; animation: hv-up .9s cubic-bezier(.16, 1, .3, 1) backwards; }
+html.js .hv-head.hv-reveal.is-in > :nth-child(2) { animation-delay: 90ms; }
+html.js .hv-head.hv-reveal.is-in > :nth-child(n+3) { animation-delay: 180ms; }
+.hv-float-2 { animation: hv-float 14s ease-in-out -4s infinite alternate; }
+.hv-float-3 { animation: hv-float 18s ease-in-out -8s infinite alternate; }
+.hv-float-2, .hv-float-3 { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .hv-reveal, html.js .hv-head.hv-reveal > * { opacity: 1; }
+html.js .hv-reveal.is-in, html.js .hv-head.hv-reveal.is-in > * { animation: none; }
+.hv-float-2, .hv-float-3 { animation: none; will-change: auto; }
+.hv-card, .hv-cta, .hv-tg-thumb { transition-duration: .01ms; }
+  html.home-v2 { transition: none; }
+  html.home-v2 body > div > header { transition: none; }tail
+}
+
+/* ==========================================================================
+   7. Responsive
+   ========================================================================== */
+/* desktop-narrow: keep proportions, tighten cards */
+@media (max-width: 1180px) {
+  .hv-cards { gap: 24px; }
+  .hv-card { grid-template-columns: 60px minmax(0, 1fr); column-gap: 24px; padding: 26px 76px 30px 24px; border-radius: 28px; }
+  .hv-copy { padding-bottom: 44px; }tail
+}
+/* tablet: cards stack, hero keeps 2 columns */
+@media (max-width: 920px) {
+  .hv-cards { grid-template-columns: 1fr; gap: 20px; }
+  .hv-card { min-height: 0; }
+  .hv-card .hv-card-title { font-size: 1.5rem !important; }tail
+}
+@media (max-width: 1279px) {
+  .hv-dots--b, .hv-dots--c { display: none; }tail /* would sit under the heading on narrower screens */
+}
+@media (max-width: 1023px) {
+  html.home-v2 .hv-title { font-size: clamp(2.2rem, 5.6vw, 3.2rem) !important; max-width: 11.6em; }
+  .hv-blob--br, .hv-dots--d { display: none; }tail
+}
+/* mobile */
+@media (max-width: 767px) {
+  .hv-top { grid-template-columns: 1fr; padding-top: 26px; row-gap: 8px; }
+  .hv-copy { padding-bottom: 0; }
+  .hv-badge { margin-bottom: 18px; font-size: 13px; }
+  html.home-v2 .hv-title { font-size: clamp(2.05rem, 9.2vw, 2.75rem) !important; line-height: 1.06 !important; max-width: 100%; }
+  html.home-v2 .hv-lead { margin-top: 16px; font-size: 1rem; }
+  .hv-cta { width: 100%; min-width: 0; height: 54px; margin-top: 24px; }
+.hv-dots--a, .hv-dots--b, .hv-dots--c { display: none; }
+  .hv-blob--tl { left: -330px; }
+  .hv-cards { padding-bottom: 36px; }tail
+}
+@media (max-width: 560px) {
+  .hv-card { grid-template-columns: 1fr; row-gap: 16px; padding: 24px 22px 84px; }
+  .hv-pill { white-space: normal; height: auto; min-height: 30px; padding-block: 5px; line-height: 1.2; }
+  html.home-v2 .hv-card-desc { font-size: 15px; }tail
+}
+
+/* narrow desktop header: make room for the toggle without wrapping */
+@media (min-width: 1024px) and (max-width: 1180px) {
+  html.home-v2 body > div > header nav { gap: 14px; font-size: 14px; }
+  html.home-v2 body > div > header > div:first-child > .lg\:flex { gap: 10px; }
+  html.home-v2 body > div > header button.hv-apply { padding: 0 16px; }
+  .hv-theme-toggle { width: 64px; }
+  html.home-v2[data-theme="light"] .hv-tg-thumb { transform: translateX(26px); }tail
+}
+
+/* ==========================================================================
+   8. Light-mode patches for sections below the hero
+   (design-system.css hard-codes dark values with !important in a few places)
+   ========================================================================== */
+html.home-v2[data-theme="light"] .bg-\[var\(--surface-950\)\]\/40 { background-color: rgba(255, 255, 255, 0.72) !important; }
+html.home-v2[data-theme="light"] .bg-\[var\(--surface-900\)\]\/60 { background-color: rgba(238, 244, 240, 0.85) !important; }
+
+html.home-v2[data-theme="light"] .btn-primary,
+html.home-v2[data-theme="light"] button.bg-\[var\(--gold-400\)\],
+html.home-v2[data-theme="light"] a.bg-\[var\(--gold-400\)\] {
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+  box-shadow: 0 10px 24px -12px rgba(109, 40, 217, 0.55);
+}
+html.home-v2[data-theme="light"] .btn-cyan:hover,
+html.home-v2[data-theme="light"] button.border-\[var\(--cyan-500\)\]:hover,
+html.home-v2[data-theme="light"] a.border-\[var\(--cyan-500\)\]:hover { color: #FFFFFF !important; }tail

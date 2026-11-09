@@ -1,0 +1,1714 @@
+/**
+ * Skilleze Technologies — Premium Futuristic Design System (Website A Visual Identity)
+ * Redesigned: Premium + Futuristic + AI-Native + Career-Focused
+ * Brand Palette: Cyan (#A78BFA), Green (#A78BFA), Pink (#C026D3), Gold (#A78BFA)
+ */
+
+/* ==========================================================================
+   1. CSS Custom Properties & Design Tokens — SKILLEZE Brand System
+   ========================================================================== */
+:root {
+  /* SKILLEZE Brand Backgrounds */
+  --sk-black: #050608;
+  --sk-graphite: #0C0F14;
+  --sk-slate: #12161D;
+
+  /* SKILLEZE Brand Accents */
+  --sk-cyan: #A78BFA;
+  --sk-green: #A78BFA;
+  --sk-pink: #C026D3;
+  --sk-gold: #A78BFA;
+
+  /* SKILLEZE Typography Colors */
+  --sk-text-primary: #F5F7FA;
+  --sk-text-secondary: #B8BBC1;
+  --sk-text-muted: #7C828C;
+
+  /* SKILLEZE Border */
+  --sk-border: #252B34;
+
+  /* ===== Legacy Variable Mappings (for Tailwind class compatibility) ===== */
+  /* Surface Hierarchy → mapped to new SKILLEZE palette */
+  --surface-950: #050608;
+  --surface-900: #0C0F14;
+  --surface-850: #12161D;
+  --surface-800: #181C24;
+  --surface-700: #1E232D;
+
+  /* Brand Core Accents → mapped to new palette */
+  --gold-400: #A78BFA;
+  --gold-500: #8B5CF6;
+  --gold-300: #DDD6FE;
+  --gold-900: #4C1D95;
+  --gold-text: #C4B5FD;
+  --gold-glow: rgba(167, 139, 250, 0.22);
+  --gold-subtle: rgba(167, 139, 250, 0.10);
+
+  --cyan-500: #A78BFA;
+  --cyan-400: #C4B5FD;
+  --cyan-600: #7C3AED;
+  --cyan-glow: rgba(139, 92, 246, 0.22);
+  --cyan-subtle: rgba(139, 92, 246, 0.10);
+
+  --magenta-500: #C026D3;
+  --magenta-400: #D946EF;
+  --magenta-glow: rgba(192, 38, 211, 0.22);
+  --magenta-subtle: rgba(192, 38, 211, 0.10);
+
+  --emerald-500: #A78BFA;
+  --emerald-400: #C4B5FD;
+  --whatsapp-green: #8B5CF6;
+  --whatsapp-dark: #5B21B6;
+  --whatsapp-teal: #6D28D9;
+
+  /* Lines & Borders */
+  --line: #252B34;
+  --line-strong: rgba(255, 255, 255, 0.12);
+  --line-gold: rgba(167, 139, 250, 0.30);
+  --line-cyan: rgba(139, 92, 246, 0.30);
+  --line-magenta: rgba(192, 38, 211, 0.30);
+
+  /* Typography Colors → mapped to SKILLEZE */
+  --text-primary: #F5F7FA;
+  --text-secondary: #B8BBC1;
+  --text-muted: #7C828C;
+  --text-dim: #5A6070;
+
+  /* Badge Colors */
+  --badge-blue: #A78BFA;
+  --badge-orange: #A78BFA;
+  --badge-purple: #C026D3;
+  --badge-green: #A78BFA;
+
+  /* Gradients */
+  --grad-gold: linear-gradient(135deg, #A78BFA, #8B5CF6);
+  --grad-signature: linear-gradient(135deg, #A78BFA, #A78BFA);
+  --grad-ai: linear-gradient(135deg, #A78BFA, #C026D3);
+  --grad-cyan-green: linear-gradient(135deg, #A78BFA 0%, #A78BFA 100%);
+
+  /* Shadows & Depth */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px -8px rgba(0, 0, 0, 0.65);
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-card-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(139, 92, 246, 0.25);
+  --shadow-glowGold: 0 0 30px rgba(167, 139, 250, 0.22);
+  --shadow-glowCyan: 0 0 30px rgba(139, 92, 246, 0.22);
+  --shadow-glowGreen: 0 0 30px rgba(167, 139, 250, 0.18);
+  --shadow-glowPink: 0 0 30px rgba(192, 38, 211, 0.18);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 180ms;
+  --duration-normal: 280ms;
+  --duration-slow: 450ms;
+}
+
+/* Light Mode Overrides (if toggled) */
+.light {
+  --surface-950: #FFFFFF;
+  --surface-900: #F8FAFC;
+  --surface-850: #F1F5F9;
+  --surface-800: #E2E8F0;
+  --surface-700: #CBD5E1;
+  --line: #E2E8F0;
+  --line-strong: #CBD5E1;
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --gold-text: #6D28D9;
+}
+
+/* ==========================================================================
+   2. Global Resets & Typography Refinement
+   ========================================================================== */
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: var(--surface-950);
+  color: var(--text-primary);
+  font-family: var(--font-body, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Subtle futuristic ambient glow — cyan/green themed */
+body::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.06) 0%, rgba(167, 139, 250, 0.03) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle grid overlay for futuristic feel */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  line-height: 1.22;
+  margin-top: 0;
+  text-wrap: balance;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.68;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+::selection {
+  background: var(--sk-cyan);
+  color: #050608;
+}
+
+/* ==========================================================================
+   3. Header, Navigation & Mega Menu — Premium Futuristic
+   ========================================================================== */
+/* Top Site Navigation Bar only */
+header.sticky,
+body > div > header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(5, 6, 8, 0.85) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--sk-border) !important;
+  transition: background-color var(--duration-normal) var(--ease-smooth), border-color var(--duration-normal) var(--ease-smooth);
+}
+
+header.sticky.scrolled,
+body > div > header.scrolled {
+  background-color: rgba(5, 6, 8, 0.95) !important;
+  border-bottom-color: rgba(139, 92, 246, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(139, 92, 246, 0.05);
+}
+
+/* Inner page content headers MUST be static */
+main header,
+article header,
+section header,
+div.max-w-7xl header {
+  position: static !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Header link styling — Cyan active system */
+header.sticky nav a,
+body > div > header nav a {
+  position: relative;
+  color: var(--sk-text-secondary);
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+header.sticky nav a:hover,
+body > div > header nav a:hover {
+  color: var(--sk-cyan) !important;
+}
+
+/* Mega-Menu Styling */
+header.sticky .group > .group-hover\:grid,
+body > div > header .group > .group-hover\:grid {
+  display: none;
+}
+
+header.sticky .group:hover > .group-hover\:grid,
+body > div > header .group:hover > .group-hover\:grid {
+  display: grid !important;
+  animation: megaMenuFadeIn 0.24s var(--ease-spring);
+  transform-origin: top center;
+  background: rgba(12, 15, 20, 0.97) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--sk-border) !important;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(139, 92, 246, 0.08) !important;
+}
+
+@keyframes megaMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mega Menu Item Hover */
+header .group-hover\:grid a {
+  transition: all var(--duration-fast) var(--ease-smooth);
+  border: 1px solid transparent;
+}
+
+header .group-hover\:grid a:hover {
+  background: var(--surface-800) !important;
+  border-color: rgba(139, 92, 246, 0.15);
+  transform: translateX(3px);
+}
+
+/* Mobile Menu Drawer */
+#mobile-menu {
+  background: rgba(12, 15, 20, 0.98) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--sk-border) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  animation: slideDown 0.22s var(--ease-spring);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   4. Buttons & Interactive Controls — SKILLEZE CTA System
+   ========================================================================== */
+.btn,
+button.inline-flex,
+a.inline-flex {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.6rem;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid transparent;
+  transition: transform var(--duration-fast) var(--ease-spring),
+              box-shadow var(--duration-fast) var(--ease-smooth),
+              background-color var(--duration-fast) var(--ease-smooth),
+              border-color var(--duration-fast) var(--ease-smooth),
+              color var(--duration-fast) var(--ease-smooth);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:active,
+button.inline-flex:active,
+a.inline-flex:active {
+  transform: scale(0.97) !important;
+}
+
+/* Primary Button — Cyan (SKILLEZE Primary CTA) */
+.btn-primary,
+button.bg-\[var\(--gold-400\)\],
+a.bg-\[var\(--gold-400\)\] {
+  background: var(--sk-cyan) !important;
+  color: #050608 !important;
+  font-weight: 700;
+  border: 1px solid rgba(139, 92, 246, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.22);
+}
+
+.btn-primary:hover,
+button.bg-\[var\(--gold-400\)\]:hover,
+a.bg-\[var\(--gold-400\)\]:hover {
+  background: var(--sk-green) !important;
+  border-color: rgba(167, 139, 250, 0.6) !important;
+  box-shadow: 0 6px 24px rgba(167, 139, 250, 0.35) !important;
+  transform: translateY(-2px);
+}
+
+/* Secondary Button (Cyan outline) */
+.btn-cyan,
+button.border-\[var\(--cyan-500\)\],
+a.border-\[var\(--cyan-500\)\] {
+  background: transparent !important;
+  color: var(--sk-cyan) !important;
+  border: 1.5px solid var(--sk-cyan) !important;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.1);
+}
+
+.btn-cyan:hover,
+button.border-\[var\(--cyan-500\)\]:hover,
+a.border-\[var\(--cyan-500\)\]:hover {
+  background: var(--sk-cyan) !important;
+  color: #050608 !important;
+  box-shadow: 0 6px 24px rgba(139, 92, 246, 0.35) !important;
+  transform: translateY(-2px);
+}
+
+/* Dark Surface Button / Ghost Button */
+.btn-surface,
+button.bg-\[var\(--surface-800\)\],
+a.bg-\[var\(--surface-800\)\] {
+  background: var(--surface-850) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--sk-border) !important;
+}
+
+.btn-surface:hover,
+button.bg-\[var\(--surface-800\)\]:hover,
+a.bg-\[var\(--surface-800\)\]:hover {
+  background: var(--surface-800) !important;
+  border-color: var(--sk-cyan) !important;
+  color: var(--sk-cyan) !important;
+  transform: translateY(-2px);
+}
+
+/* WhatsApp Action Button */
+.btn-whatsapp,
+a[href*="wa.me"] {
+  background: linear-gradient(135deg, var(--whatsapp-dark) 0%, var(--whatsapp-teal) 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.25);
+  font-weight: 700;
+}
+
+a[href*="wa.me"]:hover {
+  background: linear-gradient(135deg, var(--whatsapp-teal) 0%, var(--whatsapp-green) 100%) !important;
+  box-shadow: 0 6px 24px rgba(139, 92, 246, 0.45) !important;
+  transform: translateY(-2px);
+}
+
+/* AI Button — Cyan → Pink gradient */
+.btn-ai {
+  background: linear-gradient(135deg, #A78BFA 0%, #C026D3 100%) !important;
+  color: #050608 !important;
+  font-weight: 700;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2), 0 4px 16px rgba(192, 38, 211, 0.15);
+}
+
+.btn-ai:hover {
+  box-shadow: 0 6px 28px rgba(139, 92, 246, 0.35), 0 6px 28px rgba(192, 38, 211, 0.25) !important;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. Cards, Elevation & Glassmorphism
+   ========================================================================== */
+.card,
+.glass-panel,
+.bg-\[var\(--surface-900\)\] {
+  background-color: var(--sk-graphite) !important;
+  border-color: var(--sk-border) !important;
+  transition: transform var(--duration-normal) var(--ease-spring),
+              box-shadow var(--duration-normal) var(--ease-smooth),
+              border-color var(--duration-normal) var(--ease-smooth);
+}
+
+/* Card hover lift & glow — Cyan accent */
+.group:hover .group-hover\:scale-\[1\.02\],
+div.rounded-3xl.bg-\[var\(--surface-900\)\]:hover,
+div.rounded-2xl.bg-\[var\(--surface-900\)\]:hover {
+  border-color: rgba(139, 92, 246, 0.30);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Special hover for cyan bordered cards */
+div.border-2.border-\[var\(--cyan-500\)\]\/60:hover {
+  border-color: var(--sk-cyan) !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(139, 92, 246, 0.20) !important;
+}
+
+/* Special hover for gold bordered cards — now map to cyan system */
+div.border-2.border-\[var\(--gold-400\)\]\/60:hover {
+  border-color: var(--sk-cyan) !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(139, 92, 246, 0.20) !important;
+}
+
+/* ==========================================================================
+   6. Badges & Entity Labels
+   ========================================================================== */
+.badge,
+span.inline-flex.rounded-full,
+div.inline-flex.rounded-full {
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+/* Gold Pill Accent → now uses SKILLEZE Gold */
+span.text-\[var\(--gold-text\)\],
+div.text-\[var\(--gold-text\)\] {
+  color: var(--sk-gold) !important;
+}
+
+/* Cyan Pill Accent → SKILLEZE Cyan */
+span.text-\[var\(--cyan-500\)\],
+div.text-\[var\(--cyan-500\)\] {
+  color: var(--sk-cyan) !important;
+}
+
+/* Tech stack small tags */
+span.bg-\[var\(--surface-800\)\] {
+  background-color: var(--surface-850) !important;
+  border-color: var(--sk-border) !important;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+span.bg-\[var\(--surface-800\)\]:hover {
+  border-color: var(--sk-cyan) !important;
+  color: var(--sk-cyan) !important;
+}
+
+/* ==========================================================================
+   7. Form Controls & Inputs — SKILLEZE Form System
+   ========================================================================== */
+input, select, textarea {
+  background-color: var(--sk-graphite) !important;
+  border: 1px solid var(--sk-border) !important;
+  color: var(--text-primary) !important;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  transition: border-color var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none !important;
+  border-color: var(--sk-cyan) !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15), 0 0 20px rgba(139, 92, 246, 0.08) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--sk-text-muted) !important;
+}
+
+/* ==========================================================================
+   8. Tables & Data Display
+   ========================================================================== */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--sk-border);
+}
+
+th {
+  background-color: var(--sk-slate) !important;
+  color: var(--sk-cyan) !important;
+  font-family: var(--font-heading, sans-serif);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--sk-border);
+}
+
+td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--sk-border);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background-color: rgba(139, 92, 246, 0.02);
+}
+
+/* ==========================================================================
+   9. Accordions & Disclosure Elements
+   ========================================================================== */
+details {
+  border: 1px solid var(--sk-border) !important;
+  border-radius: var(--radius-lg);
+  background-color: var(--sk-graphite) !important;
+  transition: border-color var(--duration-fast) var(--ease-smooth),
+              background-color var(--duration-fast) var(--ease-smooth);
+  margin-bottom: 0.75rem;
+}
+
+details[open] {
+  border-color: rgba(139, 92, 246, 0.30) !important;
+  background-color: var(--sk-slate) !important;
+}
+
+summary {
+  cursor: pointer;
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  font-family: var(--font-heading, sans-serif);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  user-select: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ==========================================================================
+   10. Call to Action Banners & Highlight Sections
+   ========================================================================== */
+section.bg-gradient-to-br,
+.cta-banner {
+  background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
+              linear-gradient(135deg, var(--sk-graphite) 0%, var(--sk-black) 100%) !important;
+  border: 1px solid var(--line-cyan) !important;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.7), var(--shadow-glowCyan) !important;
+}
+
+/* ==========================================================================
+   11. Floating WhatsApp & Quick Conversion Widget
+   ========================================================================== */
+.floating-whatsapp-widget {
+  position: fixed !important; /* the generic a[href]{position:relative} rule used to win and left this in the page flow as a full-width bar */
+  left: auto;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #5B21B6 0%, #6D28D9 50%, #8B5CF6 100%);
+  color: #FFFFFF !important;
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(139, 92, 246, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.2);
+  transition: all var(--duration-fast) var(--ease-spring);
+  text-decoration: none;
+}
+
+.floating-whatsapp-widget:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 34px rgba(139, 92, 246, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.floating-whatsapp-widget svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+/* Floating Back to Top button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--sk-slate);
+  border: 1px solid var(--sk-border);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--duration-fast) var(--ease-smooth);
+  cursor: pointer;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top-btn:hover {
+  border-color: var(--sk-cyan);
+  color: var(--sk-cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.15);
+}
+
+/* ==========================================================================
+   12. Mobile & Responsive Refinements
+   ========================================================================== */
+@media (max-width: 640px) {
+  .floating-whatsapp-widget span {
+    display: none;
+  }
+  .floating-whatsapp-widget {
+    padding: 12px;
+    bottom: 20px;
+    right: 20px;
+    border-radius: var(--radius-full);
+  }
+  .back-to-top-btn {
+    bottom: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  h1 {
+    font-size: 2.1rem !important;
+    line-height: 1.2 !important;
+  }
+  h2 {
+    font-size: 1.65rem !important;
+    line-height: 1.25 !important;
+  }
+}
+
+/* ==========================================================================
+   13. Location Map Frame Styling
+   ========================================================================== */
+.map-embed-wrapper {
+  width: 100% !important;
+  height: 480px !important;
+  min-height: 420px !important;
+  border-radius: 1rem !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background-color: var(--sk-black) !important;
+}
+
+.map-embed-frame {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 420px !important;
+  border: 0 !important;
+  display: block !important;
+}
+
+/* ==========================================================================
+   Navigation Hover Dropdown Mega Menus
+   ========================================================================== */
+.nav-dropdown {
+  position: absolute;
+  top: 90%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s ease;
+  z-index: 1000;
+  background-color: var(--sk-graphite) !important;
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--sk-border) !important;
+}
+
+.courses-nav-dropdown {
+  width: 620px !important;
+  min-width: 620px !important;
+  left: 0 !important;
+  transform: translateY(-6px);
+  border: 1px solid rgba(139, 92, 246, 0.35) !important;
+}
+
+.internships-nav-dropdown {
+  width: 680px !important;
+  min-width: 680px !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(-6px) !important;
+  border: 1px solid rgba(167, 139, 250, 0.35) !important;
+}
+
+.group:hover .courses-nav-dropdown,
+.group:focus-within .courses-nav-dropdown {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.group:hover .internships-nav-dropdown,
+.group:focus-within .internships-nav-dropdown {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateX(-50%) translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.nav-dropdown .grid {
+  display: grid !important;
+}
+
+/* ==========================================================================
+   14. Scroll-triggered Fade-in Animations
+   ========================================================================== */
+@keyframes sk-fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sk-animate-in {
+  animation: sk-fadeInUp 0.5s var(--ease-spring) forwards;
+}
+
+/* ==========================================================================
+   15. Reduced Motion Support
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  body::after {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   16. Focus States — Accessibility
+   ========================================================================== */
+:focus-visible {
+  outline: 2px solid var(--sk-cyan);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   17. Signature Divider — Cyan/Green gradient
+   ========================================================================== */
+.signature-divider {
+  height: 2px;
+  background: var(--grad-signature);
+  border: none;
+  width: 100%;
+}
+
+/* ==========================================================================
+   18. Gold-to-Cyan Override Layer
+   Remaps Tailwind inline gold accent classes to SKILLEZE Cyan primary
+   ========================================================================== */
+
+/* Gold-bg buttons → Cyan */
+.bg-\[\#FDD42A\],
+.bg-\[var\(--gold-400\)\] {
+  background-color: var(--sk-cyan) !important;
+}
+
+/* Gold hover → Green */
+.hover\:bg-\[var\(--gold-300\)\]:hover,
+.hover\:bg-\[var\(--gold-400\)\]:hover,
+.hover\:bg-\[var\(--gold-500\)\]:hover {
+  background-color: var(--sk-green) !important;
+}
+
+/* Gold text → Cyan */
+.text-\[var\(--gold-text\)\] {
+  color: var(--sk-cyan) !important;
+}
+
+/* Gold text hover → brighter Cyan */
+.hover\:text-\[var\(--gold-text\)\]:hover,
+.hover\:text-\[var\(--gold-500\)\]:hover {
+  color: #C4B5FD !important;
+}
+
+/* Group hover gold text → Cyan */
+.group:hover .group-hover\:text-\[var\(--gold-text\)\] {
+  color: var(--sk-cyan) !important;
+}
+
+/* Gold glow shadow → Cyan glow */
+.shadow-glowGold {
+  --tw-shadow: 0 0 25px rgba(139, 92, 246, 0.20) !important;
+}
+
+.hover\:shadow-glowGold:hover {
+  --tw-shadow: 0 0 25px rgba(139, 92, 246, 0.30) !important;
+}
+
+/* Gold accented borders on cards → Cyan */
+.hover\:border-\[var\(--gold-400\)\]:hover {
+  border-color: var(--sk-cyan) !important;
+}
+
+/* Gold border → Cyan border */
+.border-\[var\(--gold-400\)\] {
+  border-color: var(--sk-cyan) !important;
+}
+
+/* Gold accent on back-to-top etc */
+.stroke-\[var\(--gold-400\)\] {
+  stroke: var(--sk-cyan) !important;
+}
+
+.accent-\[var\(--gold-400\)\] {
+  accent-color: var(--sk-cyan) !important;
+}
+
+/* Gold bg/10 → Cyan bg/10 */
+.bg-\[var\(--gold-400\)\]\/10 {
+  background-color: rgba(139, 92, 246, 0.10) !important;
+}
+
+.bg-\[var\(--gold-400\)\]\/15 {
+  background-color: rgba(139, 92, 246, 0.12) !important;
+}
+
+/* Gold border opacity variants → Cyan */
+.border-\[var\(--gold-400\)\]\/30,
+.border-\[var\(--gold-400\)\]\/40,
+.border-\[var\(--gold-400\)\]\/50,
+.border-\[var\(--gold-400\)\]\/60 {
+  border-color: rgba(139, 92, 246, 0.35) !important;
+}
+
+/* Gold dot indicators → Cyan */
+.bg-\[var\(--gold-400\)\]\/70 {
+  background-color: rgba(139, 92, 246, 0.60) !important;
+}
+
+/* Focus → Cyan */
+.focus\:border-\[var\(--gold-400\)\]:focus {
+  border-color: var(--sk-cyan) !important;
+}
+
+/* Magenta bg → Pink */
+.bg-\[var\(--magenta-500\)\],
+.bg-\[\#E4007C\] {
+  background-color: var(--sk-pink) !important;
+}
+
+/* Text magenta → Pink */
+.text-\[var\(--magenta-500\)\] {
+  color: var(--sk-pink) !important;
+}
+
+/* Green → SKILLEZE green */
+.text-emerald-400 {
+  color: var(--sk-green) !important;
+}
+
+.bg-emerald-400\/10 {
+  background-color: rgba(167, 139, 250, 0.10) !important;
+}
+
+/* Surface 950 specific */
+.bg-\[var\(--surface-950\)\] {
+  background-color: var(--sk-black) !important;
+}
+
+/* Previous gold #7C3AED → Cyan */
+.bg-\[\#EFA802\] {
+  background-color: var(--sk-cyan) !important;
+}
+
+/* Previous dark surface colors → SKILLEZE */
+.bg-\[\#0A0A0C\] {
+  background-color: var(--sk-black) !important;
+}
+
+.bg-\[\#14141A\] {
+  background-color: var(--sk-graphite) !important;
+}
+
+.bg-\[\#1E1E27\] {
+  background-color: var(--sk-slate) !important;
+}
+
+/* Old gold hex colors → Cyan text */
+.text-\[\#0A0A0C\] {
+  color: var(--sk-black) !important;
+}
+
+/* Previous border color → SKILLEZE border */
+.border-\[\#2A2A35\] {
+  border-color: var(--sk-border) !important;
+}
+
+/* Cyan bg → SKILLEZE Cyan */
+.bg-\[\#02C5FB\] {
+  background-color: var(--sk-cyan) !important;
+}
+
+/* ==========================================================================
+   19. Additional Tailwind Override — Edge Cases
+   ========================================================================== */
+
+/* Nested group-hover gold dot indicators → Cyan */
+.group-hover\/item\:bg-\[var\(--gold-400\)\] {
+  background-color: var(--sk-cyan) !important;
+}
+
+/* Via gradient gold → Cyan/Green */
+.via-\[var\(--gold-400\)\] {
+  --tw-gradient-via: var(--sk-cyan) !important;
+}
+
+/* Focus-visible ring → Cyan */
+.focus-visible\:ring-\[var\(--cyan-500\)\]:focus-visible {
+  --tw-ring-color: var(--sk-cyan) !important;
+}
+
+/* Gold-900 bg → SKILLEZE dark surface */
+.bg-\[\#7A5200\] {
+  background-color: var(--sk-slate) !important;
+}
+
+/* Mobile menu hover borders → Cyan */
+.hover\:border-\[var\(--gold-400\)\]:hover {
+  border-color: var(--sk-cyan) !important;
+}
+
+/* Hover gold bg → Cyan surface */
+.hover\:bg-\[var\(--gold-400\)\]:hover {
+  background-color: var(--sk-cyan) !important;
+}
+
+/* Ring color overrides */
+.focus\:ring-2:focus {
+  --tw-ring-color: rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Text #0A0A0C on buttons → keep dark for contrast */
+.hover\:text-\[\#0A0A0C\]:hover {
+  color: var(--sk-black) !important;
+}
+
+/* Blue badge → SKILLEZE Cyan */
+.text-\[var\(--badge-blue\)\] {
+  color: var(--sk-cyan) !important;
+}
+
+/* Orange badge → SKILLEZE Gold */
+.text-\[var\(--badge-orange\)\] {
+  color: var(--sk-gold) !important;
+}
+
+/* Purple badge → SKILLEZE Pink */
+.text-\[var\(--badge-purple\)\] {
+  color: var(--sk-pink) !important;
+}
+
+/* Green badge → SKILLEZE Green */
+.text-\[var\(--badge-green\)\] {
+  color: var(--sk-green) !important;
+}
+
+/* Surface-800 → SKILLEZE Slate */
+.bg-\[var\(--surface-800\)\] {
+  background-color: var(--sk-slate) !important;
+}
+
+/* Surface-900 → SKILLEZE Graphite */
+.bg-\[var\(--surface-900\)\] {
+  background-color: var(--sk-graphite) !important;
+}
+
+/* Hover surface-800 → SKILLEZE */
+.hover\:bg-\[var\(--surface-800\)\]:hover {
+  background-color: #181C24 !important;
+}
+
+/* Hover surface-900 → SKILLEZE */
+.hover\:bg-\[var\(--surface-900\)\]:hover {
+  background-color: var(--sk-graphite) !important;
+}
+
+/* Border line → SKILLEZE border */
+.border-\[var\(--line\)\] {
+  border-color: var(--sk-border) !important;
+}
+
+/* Hover border line → SKILLEZE */
+.hover\:border-\[var\(--line\)\]:hover {
+  border-color: rgba(139, 92, 246, 0.20) !important;
+}
+
+/* Surface-950 bg/40 → deep black */
+.bg-\[var\(--surface-950\)\]\/40 {
+  background-color: rgba(5, 6, 8, 0.4) !important;
+}
+
+/* Surface-900 bg/60 → graphite transparent */
+.bg-\[var\(--surface-900\)\]\/60 {
+  background-color: rgba(12, 15, 20, 0.6) !important;
+}
+
+/* ==========================================================================
+   20. Scroll-Triggered Fade-In Animation System
+   Uses CSS classes that pair with IntersectionObserver in main.js
+   ========================================================================== */
+
+/* Animate on scroll — initial state */
+[data-animate],
+.sk-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease-spring),
+              transform 0.6s var(--ease-spring);
+}
+
+[data-animate].sk-visible,
+.sk-reveal.sk-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for child elements */
+[data-animate-delay="1"] { transition-delay: 100ms; }
+[data-animate-delay="2"] { transition-delay: 200ms; }
+[data-animate-delay="3"] { transition-delay: 300ms; }
+[data-animate-delay="4"] { transition-delay: 400ms; }
+[data-animate-delay="5"] { transition-delay: 500ms; }
+
+/* Scale-in variant */
+.sk-scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s var(--ease-spring),
+              transform 0.5s var(--ease-spring);
+}
+
+.sk-scale-in.sk-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ==========================================================================
+   21. Category-Specific Page Styling — Internship (Green Accent)
+   ========================================================================== */
+
+/* Internship pages — green accent overrides */
+body[data-page-type="internship"] .btn-primary,
+body[data-page-type="internship"] .bg-\[var\(--gold-400\)\] {
+  background-color: var(--sk-green) !important;
+  border-color: rgba(167, 139, 250, 0.5) !important;
+  box-shadow: 0 4px 16px rgba(167, 139, 250, 0.22);
+}
+
+body[data-page-type="internship"] .btn-primary:hover,
+body[data-page-type="internship"] .bg-\[var\(--gold-400\)\]:hover {
+  background-color: var(--sk-cyan) !important;
+  box-shadow: 0 6px 24px rgba(139, 92, 246, 0.35) !important;
+}
+
+/* URL-based internship page detection (via selector on known page patterns) */
+/* Internship pages all live at /internships/ — use page-specific CSS when URLs match */
+
+/* ==========================================================================
+   22. Category-Specific Page Styling — AI Programs (Cyan/Pink)
+   ========================================================================== */
+
+body[data-page-type="ai"] .btn-primary,
+body[data-page-type="ai"] .bg-\[var\(--gold-400\)\] {
+  background: linear-gradient(135deg, #A78BFA 0%, #C026D3 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2), 0 4px 16px rgba(192, 38, 211, 0.15);
+}
+
+body[data-page-type="ai"] .btn-primary:hover,
+body[data-page-type="ai"] .bg-\[var\(--gold-400\)\]:hover {
+  box-shadow: 0 6px 28px rgba(139, 92, 246, 0.35), 0 6px 28px rgba(192, 38, 211, 0.25) !important;
+}
+
+/* ==========================================================================
+   23. Category-Specific — Career Accelerator (Gold Accent)
+   ========================================================================== */
+
+body[data-page-type="career"] .text-\[var\(--gold-text\)\] {
+  color: var(--sk-gold) !important;
+}
+
+body[data-page-type="career"] .bg-\[var\(--gold-400\)\]\\/10 {
+  background-color: rgba(167, 139, 250, 0.10) !important;
+}
+
+body[data-page-type="career"] .border-\[var\(--gold-400\)\] {
+  border-color: var(--sk-gold) !important;
+}
+
+/* ==========================================================================
+   24. Enhanced Footer — Premium Dark Look
+   ========================================================================== */
+
+footer,
+body > div > footer,
+.sk-footer {
+  background-color: var(--sk-black) !important;
+  border-top: 1px solid var(--sk-border) !important;
+  position: relative;
+}
+
+footer h3,
+footer h4,
+footer .font-heading,
+footer .font-bold {
+  color: var(--sk-text-primary) !important;
+}
+
+footer p,
+footer span,
+footer .text-sm,
+footer .text-xs {
+  color: var(--sk-text-secondary) !important;
+}
+
+footer a {
+  color: var(--sk-text-secondary) !important;
+  transition: color var(--duration-fast) var(--ease-smooth) !important;
+}
+
+footer a:hover {
+  color: var(--sk-cyan) !important;
+}
+
+footer .border-\[var\(--line\)\],
+footer .border-t,
+footer .border-b {
+  border-color: var(--sk-border) !important;
+}
+
+/* Footer bottom bar subtle gradient accent */
+footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.15), rgba(167, 139, 250, 0.10), transparent);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   25. Blog & Content Page Refinements
+   ========================================================================== */
+
+/* Blog cards — cleaner typography */
+article,
+.blog-card {
+  background-color: var(--sk-graphite) !important;
+  border-color: var(--sk-border) !important;
+}
+
+article:hover,
+.blog-card:hover {
+  border-color: rgba(139, 92, 246, 0.25) !important;
+}
+
+/* Blog inline links → Cyan */
+article a,
+.prose a {
+  color: var(--sk-cyan) !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(139, 92, 246, 0.3) !important;
+  text-underline-offset: 3px !important;
+  transition: text-decoration-color var(--duration-fast) var(--ease-smooth) !important;
+}
+
+article a:hover,
+.prose a:hover {
+  text-decoration-color: var(--sk-cyan) !important;
+}
+
+/* Blog code blocks */
+article code,
+.prose code {
+  background-color: var(--sk-slate) !important;
+  color: var(--sk-cyan) !important;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+/* ==========================================================================
+   26. Comparison Table Page Styling
+   ========================================================================== */
+
+/* Comparison tables — SKILLEZE themed */
+.comparison-table th,
+table th {
+  background-color: var(--sk-slate) !important;
+  color: var(--sk-cyan) !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+}
+
+.comparison-table td,
+table td {
+  color: var(--sk-text-secondary) !important;
+  border-color: var(--sk-border) !important;
+}
+
+/* Comparison winner/highlight → Cyan */
+.comparison-winner,
+td.font-bold {
+  color: var(--sk-cyan) !important;
+}
+
+/* ==========================================================================
+   27. Form Toast Styling — Override inline toast from main.js
+   ========================================================================== */
+
+.sk-form-toast {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* ==========================================================================
+   28. Enhanced Micro-Interactions
+   ========================================================================== */
+
+/* Smooth link underline animation */
+a[href]:not(.btn):not(.inline-flex):not([class*="bg-"]) {
+  position: relative;
+}
+
+/* Card interactive lift — subtle */
+.group:hover .group-hover\:scale-\[1\.02\] {
+  transform: scale(1.02) !important;
+  transition: transform 0.3s var(--ease-spring) !important;
+}
+
+/* Card hover translations */
+.hover\:-translate-y-1:hover {
+  transform: translateY(-4px) !important;
+  transition: transform 0.25s var(--ease-spring) !important;
+}
+
+/* Button press effect */
+button:active,
+a.inline-flex:active {
+  transform: scale(0.97) !important;
+  transition: transform 80ms ease !important;
+}
+
+/* Smooth icon rotation */
+.group:hover .group-hover\:rotate-180 {
+  transition: transform 0.3s var(--ease-spring) !important;
+}
+
+/* Badge hover subtle scale */
+span.rounded-full:hover,
+div.rounded-full:hover {
+  transform: scale(1.02);
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+/* Input focus subtle animation */
+input:focus,
+select:focus,
+textarea:focus {
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   29. Hero Section — Animated Background Particles & Effects
+   ========================================================================== */
+
+/* Animated floating particles for hero section */
+@keyframes sk-float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-12px) translateX(6px); }
+  50% { transform: translateY(-6px) translateX(-4px); }
+  75% { transform: translateY(-18px) translateX(8px); }
+}
+
+@keyframes sk-pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes sk-grid-scroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+/* Hero section enhanced ambient glow */
+section:first-of-type::before,
+main > section:first-child::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(139, 92, 246, 0.08) 0%,
+    rgba(167, 139, 250, 0.04) 30%,
+    rgba(192, 38, 211, 0.02) 60%,
+    transparent 80%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Subtle grid animation on body (very slow to avoid distraction) */
+body::after {
+  animation: sk-grid-scroll 30s linear infinite !important;
+}
+
+/* ==========================================================================
+   30. Announcement Bar & Promotion Strip
+   ========================================================================== */
+
+.announcement-bar,
+.sk-announcement {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(167, 139, 250, 0.05) 100%);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sk-text-primary);
+  position: relative;
+  z-index: 101;
+}
+
+.announcement-bar a,
+.sk-announcement a {
+  color: var(--sk-cyan) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ==========================================================================
+   31. Enhanced Responsive — Mobile Polish
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  /* Smaller section padding on mobile */
+  section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Compact cards on mobile */
+  .rounded-3xl {
+    border-radius: 1rem !important;
+  }
+
+  /* Body ambient glow — smaller on mobile */
+  body::before {
+    width: 500px !important;
+    height: 250px !important;
+    top: -100px !important;
+  }
+
+  /* Disable grid overlay on mobile for performance */
+  body::after {
+    display: none !important;
+  }
+
+  /* Hero glow smaller on mobile */
+  section:first-of-type::before,
+  main > section:first-child::before {
+    width: 400px !important;
+    height: 200px !important;
+  }
+
+  /* Footer → no gradient accent on mobile */
+  footer::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.85rem !important;
+    line-height: 1.18 !important;
+  }
+
+  h2 {
+    font-size: 1.45rem !important;
+  }
+
+  h3 {
+    font-size: 1.15rem !important;
+  }
+
+  /* Compact button on very small screens */
+  button,
+  .btn {
+    font-size: 0.875rem !important;
+    padding: 0.625rem 1.25rem !important;
+  }
+}
+
+/* Tablet breakpoint refinements */
+@media (min-width: 641px) and (max-width: 1023px) {
+  body::before {
+    width: 700px;
+    height: 350px;
+  }
+}
+
+/* ==========================================================================
+   32. Print Styles
+   ========================================================================== */
+
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+
+  body::before,
+  body::after,
+  section:first-of-type::before,
+  footer::after {
+    display: none !important;
+  }
+
+  header,
+  .floating-whatsapp-widget,
+  .back-to-top-btn,
+  .announcement-bar {
+    display: none !important;
+  }
+
+  a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+
+  * {
+    background: transparent !important;
+    color: #000000 !important;
+    border-color: #cccccc !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ==========================================================================
+   33. Light-Mode Text Override for Cyan Buttons
+   Ensures button text stays dark on bright cyan/green backgrounds
+   ========================================================================== */
+
+/* Buttons with cyan bg should always have dark text */
+.bg-\[var\(--gold-400\)\],
+.bg-\[var\(--cyan-500\)\],
+.bg-\[\#FDD42A\],
+.bg-\[\#02C5FB\],
+.bg-\[\#EFA802\] {
+  color: var(--sk-black) !important;
+}
+
+/* ==========================================================================
+   34. Scrollbar Enhancement
+   ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sk-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sk-slate);
+  border-radius: 4px;
+  border: 2px solid var(--sk-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.3);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sk-slate) var(--sk-black);
+}
+
+/* ==========================================================================
+   35. Selection Color
+   ========================================================================== */
+
+::selection {
+  background: var(--sk-cyan) !important;
+  color: var(--sk-black) !important;
+}
+
+::-moz-selection {
+  background: var(--sk-cyan) !important;
+  color: var(--sk-black) !important;
+}
+
+/* ==========================================================================
+   36. Gradient Borders — Used for premium card effects
+   ========================================================================== */
+
+.sk-gradient-border {
+  position: relative;
+  border: none !important;
+}
+
+.sk-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--sk-cyan), var(--sk-green));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   37. Glassmorphism Utility Enhancements
+   ========================================================================== */
+
+.glass-panel {
+  background-color: rgba(12, 15, 20, 0.75) !important;
+  border: 1px solid var(--sk-border) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+}
+
+.glass-panel:hover {
+  border-color: rgba(139, 92, 246, 0.25) !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(139, 92, 246, 0.08) !important;
+}
+
+/* ==========================================================================
+   38. Animated Gradient Text — for hero emphasis
+   ========================================================================== */
+
+@keyframes sk-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.sk-gradient-text {
+  background: linear-gradient(135deg, var(--sk-cyan), var(--sk-green), var(--sk-cyan));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sk-gradient-shift 4s ease infinite;
+}
+
+.sk-gradient-text-ai {
+  background: linear-gradient(135deg, var(--sk-cyan), var(--sk-pink), var(--sk-cyan));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sk-gradient-shift 4s ease infinite;
+}
+
+.sk-gradient-text-gold {
+  background: linear-gradient(135deg, var(--sk-gold), #8B5CF6, var(--sk-gold));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sk-gradient-shift 4s ease infinite;
+}
+
+/* ==========================================================================
+   39. WhatsApp Button — Green bg must keep white text
+   ========================================================================== */
+
+.floating-whatsapp-widget,
+a[href*="wa.me"],
+.btn-whatsapp {
+  color: #FFFFFF !important;
+}
+
+/* ==========================================================================
+   40. Map Embed — Dark mode integration
+   ========================================================================== */
+
+.map-embed-wrapper,
+iframe[src*="google.com/maps"] {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--sk-border) !important;
+  filter: brightness(0.85) contrast(1.1) saturate(0.9);
+}
+
+.map-embed-wrapper:hover,
+iframe[src*="google.com/maps"]:hover {
+  filter: brightness(0.95) contrast(1.05) saturate(1);
+  border-color: rgba(139, 92, 246, 0.25) !important;
+}
+
+/* ---- Responsive safety net (all pages) ---- */
+main { overflow-x: clip; }                       /* decorative glows / long strings can never widen the page */
+@media (max-width: 640px) {
+  main a.inline-flex, main a.inline-flex > span { min-width: 0; max-width: 100%; }
+  main a.inline-flex > span { white-space: normal; overflow-wrap: anywhere; }
+}
+
+/* ---- Cross-page fade (progressive: Chromium cross-document view transitions) ---- */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation-duration: .2s; }
+::view-transition-new(root) { animation-duration: .3s; }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }

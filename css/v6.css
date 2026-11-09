@@ -1,0 +1,321 @@
+/* Skilleze v6 — shared finishing layer (home + every inner page).
+   Loaded last. Pure restyling: no text or content is touched.
+   1 logo · 2 soft light palette · 3 WhatsApp buttons · 4 button/dropdown hovers · 5 footer · 6 text + background motion */
+
+/* ===================== 1. logo (neon mark) ===================== */
+html:is(.home-v2, .sk-t) header a > img[alt="Skilleze Technologies"] { height: 60px !important; width: auto !important; max-width: none; filter: drop-shadow(0 4px 14px rgba(var(--v4-a), .22)); }
+html:is(.home-v2, .sk-t) header.scrolled a > img[alt="Skilleze Technologies"] { height: 52px !important; }
+html:is(.home-v2, .sk-t) footer a > img[alt="Skilleze Technologies"] { height: 64px !important; width: auto !important; }
+@media (max-width: 640px) { html:is(.home-v2, .sk-t) header a > img[alt="Skilleze Technologies"] { height: 52px !important; } }
+
+/* ===================== 2. light mode: soft, dim, premium (no pure white) ===================== */
+html.home-v2[data-theme="light"],
+html.sk-t[data-theme="light"] {
+  --hv-bg: #F6EDE2; --hv-bg-rgb: 246, 237, 226;
+  --hv-card-a: #FCF7EF; --hv-card-b: #F8F0E6; --hv-sheen: rgba(109, 40, 217, 0.07);
+  --hv-text: #2A1F2D; --hv-text2: #52424D;
+  --hv-border: rgba(109, 40, 217, 0.17); --hv-line: rgba(42, 31, 45, 0.10);
+  --hv-icon-bg: rgba(109, 40, 217, 0.09); --hv-icon-border: rgba(109, 40, 217, 0.17);
+  --hv-pill-bg: rgba(109, 40, 217, 0.09);
+  --hv-card-shadow: rgba(96, 52, 96, 0.20);
+  --hv-tg-bg: #F8EFE4; --hv-tg-border: rgba(42, 31, 45, 0.12); --hv-tg-thumb: #E4D5C4;
+  --sk-black: #F6EDE2; --sk-graphite: #FCF7EF; --sk-slate: #F1E6D9; --sk-border: #E4D5C4;
+  --surface-950: #F6EDE2; --surface-900: #FCF7EF; --surface-850: #F1E6D9; --surface-800: #E9DCCC; --surface-700: #DDCDBB;
+  --line: #E4D5C4; --line-strong: #D3C2AE;
+  --text-primary: #2A1F2D; --text-secondary: #46363F; --text-muted: #65545D; --text-dim: #76656C;
+  --sk-text-primary: #2A1F2D; --sk-text-secondary: #46363F; --sk-text-muted: #65545D;
+  --shadow-sm: 0 2px 8px rgba(96, 52, 96, .10); --shadow-md: 0 8px 24px -6px rgba(96, 52, 96, .16); --shadow-lg: 0 16px 40px -10px rgba(96, 52, 96, .20);
+  --shadow-card: 0 10px 30px -12px rgba(96, 52, 96, .20), 0 0 0 1px rgba(109, 40, 217, .08);
+  --shadow-card-hover: 0 20px 40px -14px rgba(96, 52, 96, .28), 0 0 0 1px rgba(109, 40, 217, .22);
+}
+html.home-v2[data-theme="light"] .bg-\[var\(--surface-950\)\]\/40 { background-color: rgba(var(--hv-bg-rgb), .66) !important; }
+html.home-v2[data-theme="light"] .bg-\[var\(--surface-900\)\]\/60 { background-color: rgba(252, 247, 239, .82) !important; }
+html.sk-t[data-theme="light"] .bg-\[var\(--surface-950\)\]\/40 { background-color: rgba(var(--hv-bg-rgb), .66) !important; }
+html.sk-t[data-theme="light"] .bg-\[var\(--surface-900\)\]\/60 { background-color: rgba(252, 247, 239, .82) !important; }
+html:is(.home-v2, .sk-t)[data-theme="light"] .hv3-btn { background: var(--hv-card-a); }
+html:is(.home-v2, .sk-t)[data-theme="light"] main :is(input, textarea, select) { background-color: #FDF9F3; color: var(--hv-text); border-color: var(--hv-border); }
+html:is(.home-v2, .sk-t)[data-theme="light"] .hv3-card, html.home-v2[data-theme="light"] .hv-ccard { box-shadow: 0 26px 50px -34px var(--hv-card-shadow), 0 2px 8px -4px var(--hv-card-shadow); }
+/* hero illustration cards keep a clear edge against the dimmer paper */
+html.home-v2[data-theme="light"] .hv3-art { filter: saturate(.96); }
+
+/* ===================== 3. WhatsApp buttons (brand glyph, green on hover) ===================== */
+html:is(.home-v2, .sk-t) { --wa: #25D366; --wa-2: #128C7E; --wa-3: #0B6B5E; }
+html:is(.home-v2, .sk-t) body :is(a, button).hv-wa.hv-wa.hv-wa.hv-wa {
+  display: inline-flex !important; align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(180deg, rgba(37, 211, 102, .13), rgba(37, 211, 102, .04)), var(--hv-card-a) !important;
+  color: var(--hv-text) !important; border: 1.5px solid rgba(37, 211, 102, .50) !important;
+  border-radius: 999px !important; font-weight: 700; letter-spacing: -.005em; text-decoration: none;
+  box-shadow: 0 10px 26px -16px rgba(18, 140, 126, .55) !important;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .3s ease, transform .25s cubic-bezier(.16, 1, .3, 1) !important;
+}
+html:is(.home-v2, .sk-t) body a.hv-wa.hv-wa.hv-wa.hv-wa:not(.floating-whatsapp-widget) { padding: 12px 24px 12px 14px !important; }
+html:is(.home-v2, .sk-t) body button.hv-wa.hv-wa.hv-wa.hv-wa { padding-left: 16px !important; padding-right: 26px !important; }
+html:is(.home-v2, .sk-t) .hv-wa .hv-wa-ic, html:is(.home-v2, .sk-t) .floating-whatsapp-widget svg {
+  width: 30px !important; height: 30px !important; padding: 6px; margin: 0 !important; flex: none; box-sizing: border-box;
+  border-radius: 50%; background: var(--wa); color: #fff !important; fill: #fff !important; stroke: none !important;
+  transition: background-color .25s ease, color .25s ease, fill .25s ease, transform .35s cubic-bezier(.16, 1, .3, 1);
+}
+html:is(.home-v2, .sk-t) body :is(a, button).hv-wa.hv-wa.hv-wa.hv-wa:hover,
+html:is(.home-v2, .sk-t) body :is(a, button).hv-wa.hv-wa.hv-wa.hv-wa:focus-visible {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important; color: #fff !important; border-color: transparent !important;
+  box-shadow: 0 16px 34px -12px rgba(37, 211, 102, .65), 0 0 0 4px rgba(37, 211, 102, .16) !important; transform: translateY(-2px);
+}
+html:is(.home-v2, .sk-t) .hv-wa:hover .hv-wa-ic, html:is(.home-v2, .sk-t) .hv-wa:focus-visible .hv-wa-ic,
+html:is(.home-v2, .sk-t) .floating-whatsapp-widget:hover svg { background: #fff; color: var(--wa-2) !important; fill: var(--wa-2) !important; transform: rotate(-8deg) scale(1.06); }
+html:is(.home-v2, .sk-t) body :is(a, button).hv-wa.hv-wa.hv-wa.hv-wa:active { transform: translateY(0) scale(.98); }
+html:is(.home-v2, .sk-t) .hv-wa span { color: inherit !important; }
+/* wrapped anchors (anchor > button) */
+html:is(.home-v2, .sk-t) body a[href*="wa.me"]:has(> button.hv-wa) { background: none !important; border: 0 !important; box-shadow: none !important; padding: 0 !important; display: inline-block; }
+/* hero / CTA size */
+html.home-v2 .hv-cta-sec a.hv-wa { height: 54px; }
+/* mobile bottom bar */
+html:is(.home-v2, .sk-t) body a.hv-wa.hv-wa.hv-wa.hv-wa:not(.floating-whatsapp-widget):is(.flex-1) { padding: 8px 12px 8px 8px !important; gap: 7px; box-shadow: none !important; }
+html:is(.home-v2, .sk-t) .md\:hidden.fixed.bottom-0 .hv-wa-ic { width: 26px !important; height: 26px !important; padding: 5px; }
+html:is(.home-v2, .sk-t) .md\:hidden.fixed.bottom-0.hv4-compact > a.hv-wa { padding-inline: 0 !important; }
+/* floating widget (same recipe; on phones it is just the green round glyph) */
+html:is(.home-v2, .sk-t) body .floating-whatsapp-widget.floating-whatsapp-widget.floating-whatsapp-widget {
+  background: linear-gradient(180deg, rgba(37, 211, 102, .13), rgba(37, 211, 102, .04)), var(--hv-card-a) !important;
+  color: var(--hv-text) !important; border: 1.5px solid rgba(37, 211, 102, .55) !important; border-radius: 999px !important;
+  padding: 8px 20px 8px 8px !important; gap: 10px; box-shadow: 0 14px 32px -12px rgba(0, 0, 0, .45), 0 0 0 0 rgba(37, 211, 102, .45) !important;
+  
+}
+html:is(.home-v2, .sk-t) body .floating-whatsapp-widget.floating-whatsapp-widget.floating-whatsapp-widget:hover {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important; color: #fff !important; border-color: transparent !important;
+  box-shadow: 0 18px 38px -12px rgba(37, 211, 102, .7), 0 0 0 4px rgba(37, 211, 102, .16) !important; animation: none; transform: translateY(-2px);
+}
+html:is(.home-v2, .sk-t) .floating-whatsapp-widget span { color: inherit !important; font-weight: 700; }
+@keyframes v6-wa-ping { 0%, 70%, 100% { box-shadow: 0 14px 32px -12px rgba(0, 0, 0, .45), 0 0 0 0 rgba(37, 211, 102, 0); } 78% { box-shadow: 0 14px 32px -12px rgba(0, 0, 0, .45), 0 0 0 0 rgba(37, 211, 102, .5); } 100% { box-shadow: 0 14px 32px -12px rgba(0, 0, 0, .45), 0 0 0 16px rgba(37, 211, 102, 0); } }
+@media (max-width: 767px) {
+  html:is(.home-v2, .sk-t) body .floating-whatsapp-widget.floating-whatsapp-widget.floating-whatsapp-widget { width: 54px; height: 54px; padding: 0 !important; background: var(--wa) !important; border-color: rgba(255, 255, 255, .35) !important; justify-content: center; border-radius: 50% !important; }
+  html:is(.home-v2, .sk-t) .floating-whatsapp-widget svg { width: 54px !important; height: 54px !important; padding: 13px; background: transparent; }
+}
+@media (max-width: 480px) {
+  html:is(.home-v2, .sk-t) body a.hv-wa.hv-wa.hv-wa.hv-wa:not(.floating-whatsapp-widget):not(.flex-1) { width: 100%; }
+}
+
+/* ===================== 4. hover states: every button + the nav dropdown ===================== */
+/* nav dropdown items: soft violet tint (was a hard-coded near-black box) */
+html:is(.home-v2, .sk-t) header .group-hover\:grid a:hover,
+html:is(.home-v2, .sk-t) header .group-hover\:grid a.hover\:bg-\[var\(--surface-800\)\]:hover,
+html:is(.home-v2, .sk-t) header .group-hover\:block a:hover {
+  background: rgba(var(--v4-a), .12) !important; border-color: rgba(var(--v4-a), .30) !important; color: var(--hv-primary) !important; transform: translateX(3px);
+  box-shadow: inset 3px 0 0 var(--hv-primary);
+}
+html:is(.home-v2, .sk-t) header .group-hover\:grid a:hover * { color: inherit; }
+html:is(.home-v2, .sk-t) .hover\:bg-\[var\(--surface-800\)\]:hover { background-color: rgba(var(--v4-a), .12) !important; }
+html:is(.home-v2, .sk-t) .hover\:bg-\[var\(--surface-900\)\]:hover { background-color: var(--hv-card-a) !important; }
+html:is(.home-v2, .sk-t) :is(#mobile-menu a, footer a):hover { background-color: transparent !important; }
+
+/* shared easing for every button-like control */
+html:is(.home-v2, .sk-t) :is(button, a.hv-btn, a.hv3-btn, .btn-primary, .btn-cyan, .btn-outline, a[class*="rounded-full"][class*="px-"], a[class*="rounded-xl"][class*="px-"]):not(.hv-wa):not(.hv-theme-toggle):not(.back-to-top-btn):not(.floating-whatsapp-widget) {
+  transition: transform .25s cubic-bezier(.16, 1, .3, 1), box-shadow .3s ease, background-color .25s ease, border-color .25s ease, color .25s ease, filter .25s ease;
+}
+/* primary (violet gradient): lift, brighter fill, wider glow */
+html:is(.home-v2, .sk-t) :is(a, button):is(.bg-\[var\(--gold-400\)\], .bg-\[var\(--cyan-500\)\], .btn-primary, .hv-btn, .hv3-btn-primary):not(.hv-wa):hover {
+  transform: translateY(-2px); filter: brightness(1.1) saturate(1.05);
+  box-shadow: 0 18px 38px -12px var(--hv-btn-glow), 0 0 0 4px rgba(var(--v4-a), .16) !important;
+}
+/* secondary (outline / surface): tint + violet border + lift */
+html:is(.home-v2, .sk-t) :is(button, a):is(.hover\:border-\[var\(--gold-400\)\], .hover\:border-\[var\(--cyan-500\)\], .hover\:border-\[var\(--emerald-500\)\], .hv3-btn, .btn-outline):not(.hv-wa):hover {
+  background: rgba(var(--v4-a), .13) !important; border-color: var(--hv-primary) !important; color: var(--hv-primary) !important;
+  transform: translateY(-2px); box-shadow: 0 14px 30px -16px var(--hv-btn-glow) !important;
+}
+/* ghost outline that fills on hover */
+html:is(.home-v2, .sk-t) button:is(.hover\:bg-\[var\(--gold-400\)\]):hover {
+  background: linear-gradient(135deg, var(--hv-btn-a), var(--hv-btn-b)) !important; color: var(--hv-btn-text) !important; border-color: transparent !important;
+  transform: translateY(-2px); box-shadow: 0 16px 34px -12px var(--hv-btn-glow) !important;
+}
+html:is(.home-v2, .sk-t) :is(button, a):is(.hover\:bg-\[var\(--gold-400\)\]):hover * { color: inherit !important; }
+html:is(.home-v2, .sk-t) :is(button, a[class*="rounded-full"], a[class*="rounded-xl"]):active:not(.hv-wa) { transform: translateY(0) scale(.98); }
+/* form submit + plain buttons that carry no variant class */
+html:is(.home-v2, .sk-t) main button[type="submit"]:not([class*="hover:"]):hover { filter: brightness(1.1); transform: translateY(-2px); }
+/* small controls */
+html:is(.home-v2, .sk-t) .back-to-top-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 28px -10px var(--hv-btn-glow); }
+html:is(.home-v2, .sk-t) .hv-theme-toggle:hover { box-shadow: 0 0 0 3px var(--hv-icon-bg), 0 8px 18px -8px var(--hv-btn-glow); }
+/* touch devices: no sticky hover lift */
+@media (hover: none) {
+  html:is(.home-v2, .sk-t) :is(button, a):hover { transform: none !important; }
+}
+
+/* ===================== 5. footer: dark panel + soft shadow, clearly readable in both themes ===================== */
+html:is(.home-v2, .sk-t) footer:not(#v6) {
+  --text-muted: #C3BED8; --text-secondary: #DAD6EA; --text-primary: #F5F3FF; --text-dim: #A39EBC;
+  --gold-text: #C4B5FD; --cyan-500: #C4B5FD; --gold-400: #A78BFA; --emerald-500: #C4B5FD; --magenta-500: #C4B5FD;
+  --line: rgba(255, 255, 255, .12); --hv-text: #F5F3FF; --hv-text2: #C3BED8; --hv-primary: #C4B5FD; --hv-line: rgba(255, 255, 255, .12); --hv-border: rgba(255, 255, 255, .14);
+  position: relative; isolation: isolate; color: #C3BED8;
+  background: radial-gradient(90% 60% at 12% 0%, rgba(139, 92, 246, .20), transparent 62%), radial-gradient(70% 60% at 100% 100%, rgba(124, 58, 237, .14), transparent 60%), linear-gradient(180deg, #151025 0%, #0B0814 100%) !important;
+  border-top: 1px solid rgba(196, 181, 253, .22) !important;
+  border-radius: 30px 30px 0 0; margin-top: 24px;
+  box-shadow: 0 -28px 70px -34px rgba(var(--v4-a), .55), 0 -2px 0 0 rgba(255, 255, 255, .04) inset !important;
+}
+html:is(.home-v2, .sk-t) footer:not(#v6)::before { content: ""; position: absolute; left: 8%; right: 8%; top: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(196, 181, 253, .75), transparent); pointer-events: none; }
+html:is(.home-v2, .sk-t) footer:not(#v6) :is(p, li, span, div) { text-shadow: 0 1px 2px rgba(0, 0, 0, .55); }
+html:is(.home-v2, .sk-t) footer:not(#v6) :is(p, li, div, span, .text-\[var\(--text-muted\)\]) { color: #C9C4DE !important; }
+html:is(.home-v2, .sk-t) footer:not(#v6) h3, html:is(.home-v2, .sk-t) footer:not(#v6) h4 { color: #D8CCFF !important; text-shadow: 0 1px 10px rgba(139, 92, 246, .45); border-color: rgba(255, 255, 255, .14) !important; }
+html:is(.home-v2, .sk-t) footer:not(#v6) a { color: #DCD8EE !important; text-shadow: 0 1px 2px rgba(0, 0, 0, .6); text-decoration: none; background: none !important; transition: color .2s ease, text-shadow .25s ease, transform .25s cubic-bezier(.16, 1, .3, 1); }
+html:is(.home-v2, .sk-t) footer:not(#v6) a:hover, html:is(.home-v2, .sk-t) footer:not(#v6) a:focus-visible {
+  color: #FFFFFF !important; text-shadow: 0 0 14px rgba(167, 139, 250, .95), 0 1px 2px rgba(0, 0, 0, .6); transform: translateX(3px);
+}
+html:is(.home-v2, .sk-t) footer:not(#v6) a > img { text-shadow: none; transform: none !important; }
+html:is(.home-v2, .sk-t) footer:not(#v6) a:has(> img):hover { transform: none; }
+html:is(.home-v2, .sk-t) footer:not(#v6) svg { filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .5)); }
+html:is(.home-v2, .sk-t) footer:not(#v6) .border-t, html:is(.home-v2, .sk-t) footer:not(#v6) [class*="border-[var(--line)]"] { border-color: rgba(255, 255, 255, .12) !important; }
+@media (max-width: 767px) { html:is(.home-v2, .sk-t) footer:not(#v6) { border-radius: 22px 22px 0 0; } }
+
+html:is(.home-v2, .sk-t) footer:not(#v6) svg { color: #C4B5FD !important; }
+html:is(.home-v2, .sk-t) footer:not(#v6) a.font-bold, html:is(.home-v2, .sk-t) footer:not(#v6) a[class*="font-bold"], html:is(.home-v2, .sk-t) footer:not(#v6) a[class*="text-[var(--gold"] { color: #E4DAFF !important; }
+html:is(.home-v2, .sk-t) footer:not(#v6) > div:last-child { border-color: rgba(255, 255, 255, .12) !important; }
+
+/* ===================== 6. motion: minimal text animation + one background per page ===================== */
+@keyframes v6-rise { from { opacity: .3; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+@keyframes v6-sheen { to { background-position: 200% 0; } }
+html.v6-js.sk-t main h1 { animation: v6-rise .7s cubic-bezier(.16, 1, .3, 1) both; }
+html.v6-js .v6-r { opacity: 0; transform: translate3d(0, 14px, 0); }
+html.v6-js .v6-r.v6-in { opacity: 1; transform: none; transition: opacity .7s ease, transform .8s cubic-bezier(.16, 1, .3, 1); transition-delay: var(--v6-d, 0s); }
+/* home: the two accent phrases of the H1 carry a slow light sweep */
+html.home-v2 .hv-title .hv-accent { background-size: 220% 100%; }
+
+.v6-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; }
+.v6-bg i { position: absolute; display: block; will-change: transform, opacity; }
+html:is(.home-v2, .sk-t) body > div.min-h-screen { background-color: transparent !important; }
+
+/* aurora: three drifting colour blooms */
+.v6-aurora i { width: 60vmax; height: 60vmax; border-radius: 50%; background: radial-gradient(circle, rgba(var(--v4-a), .20) 0%, rgba(var(--v4-a), 0) 66%); }
+.v6-aurora i:nth-child(1) { left: -18vmax; top: -20vmax; animation: v6-drift-a 26s ease-in-out infinite alternate; }
+.v6-aurora i:nth-child(2) { right: -22vmax; top: 18vh; animation: v6-drift-b 32s ease-in-out infinite alternate; opacity: .8; }
+.v6-aurora i:nth-child(3) { left: 24vw; bottom: -34vmax; animation: v6-drift-a 38s ease-in-out infinite alternate-reverse; opacity: .7; }
+@keyframes v6-drift-a { to { transform: translate3d(14vw, 10vh, 0) scale(1.15); } }
+@keyframes v6-drift-b { to { transform: translate3d(-16vw, -8vh, 0) scale(.9); } }
+
+/* grid: a dotted lattice that slowly slides */
+.v6-grid i { left: -80px; top: -80px; right: -80px; bottom: -80px; background-image: radial-gradient(rgba(var(--v4-a), .34) 1.3px, transparent 1.6px); background-size: 40px 40px; animation: v6-slide 24s linear infinite; -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 78%); mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 78%); opacity: .75; }
+@keyframes v6-slide { to { transform: translate3d(40px, 40px, 0); } }
+
+/* rings: slow expanding ripples from the top-right */
+.v6-rings i { right: -14vmax; top: -14vmax; width: 44vmax; height: 44vmax; border-radius: 50%; border: 1.5px solid rgba(var(--v4-a), .30); animation: v6-ripple 14s ease-out infinite; opacity: 0; }
+.v6-rings i:nth-child(2) { animation-delay: 3.5s; } .v6-rings i:nth-child(3) { animation-delay: 7s; } .v6-rings i:nth-child(4) { animation-delay: 10.5s; }
+@keyframes v6-ripple { 0% { transform: scale(.25); opacity: 0; } 12% { opacity: .9; } 100% { transform: scale(1.5); opacity: 0; } }
+
+/* beams: soft diagonal light bars sweeping across */
+.v6-beams i { top: -20vh; bottom: -20vh; width: 22vw; background: linear-gradient(90deg, transparent, rgba(var(--v4-a), .16), transparent); transform: translate3d(-40vw, 0, 0) skewX(-18deg); animation: v6-sweep 18s linear infinite; }
+.v6-beams i:nth-child(2) { animation-duration: 24s; animation-delay: -8s; width: 14vw; } .v6-beams i:nth-child(3) { animation-duration: 30s; animation-delay: -15s; width: 30vw; opacity: .7; }
+@keyframes v6-sweep { to { transform: translate3d(130vw, 0, 0) skewX(-18deg); } }
+
+/* particles: small dots rising (positions are set by JS custom properties) */
+.v6-particles i { left: var(--x); bottom: -16px; width: var(--s); height: var(--s); border-radius: 50%; background: rgba(var(--v4-a), .55); box-shadow: 0 0 10px rgba(var(--v4-a), .5); opacity: 0; animation: v6-rise-up var(--t) linear var(--d) infinite; }
+@keyframes v6-rise-up { 0% { transform: translate3d(0, 0, 0); opacity: 0; } 10% { opacity: .75; } 90% { opacity: .5; } 100% { transform: translate3d(var(--dx), -108vh, 0); opacity: 0; } }
+
+/* waves: two wide sine bands gliding sideways */
+.v6-waves i { left: 0; width: 200%; height: 220px; background-repeat: repeat-x; background-size: 50% 100%; opacity: .9; }
+.v6-waves i:nth-child(1) { bottom: 4vh; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 220' preserveAspectRatio='none'%3E%3Cpath d='M0 110 C100 40 200 40 300 110 S500 180 600 110 S760 50 800 110' fill='none' stroke='%238B5CF6' stroke-opacity='.30' stroke-width='2'/%3E%3C/svg%3E"); animation: v6-wave 26s linear infinite; }
+.v6-waves i:nth-child(2) { bottom: 10vh; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 220' preserveAspectRatio='none'%3E%3Cpath d='M0 110 C100 170 200 170 300 110 S500 40 600 110 S760 160 800 110' fill='none' stroke='%23A78BFA' stroke-opacity='.24' stroke-width='2'/%3E%3C/svg%3E"); animation: v6-wave 38s linear infinite reverse; }
+.v6-waves i:nth-child(3) { bottom: -2vh; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 220' preserveAspectRatio='none'%3E%3Cpath d='M0 110 C120 60 220 60 320 110 S520 160 620 110 S740 70 800 110' fill='none' stroke='%237C3AED' stroke-opacity='.22' stroke-width='2'/%3E%3C/svg%3E"); animation: v6-wave 50s linear infinite; }
+@keyframes v6-wave { to { transform: translate3d(-50%, 0, 0); } }
+
+/* mesh: one big conic bloom, turning very slowly */
+.v6-mesh i { left: 50%; top: 40%; width: 120vmax; height: 120vmax; margin: -60vmax 0 0 -60vmax; background: conic-gradient(from 0deg, rgba(var(--v4-a), 0) 0deg, rgba(var(--v4-a), .20) 70deg, rgba(var(--v4-a), 0) 140deg, rgba(var(--v4-a), .13) 220deg, rgba(var(--v4-a), 0) 300deg); -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 62%); mask-image: radial-gradient(circle, #000 0%, transparent 62%); animation: v6-turn 70s linear infinite; }
+@keyframes v6-turn { to { transform: rotate(360deg); } }
+
+/* orbit: dashed rings with a dot travelling on each */
+.v6-orbit i { right: -10vmax; top: 6vh; border-radius: 50%; border: 1px dashed rgba(var(--v4-a), .26); animation: v6-turn 60s linear infinite; }
+.v6-orbit i::after { content: ""; position: absolute; top: -5px; left: 50%; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: rgba(var(--v4-a), .85); box-shadow: 0 0 14px rgba(var(--v4-a), .8); }
+.v6-orbit i:nth-child(1) { width: 38vmax; height: 38vmax; }
+.v6-orbit i:nth-child(2) { width: 56vmax; height: 56vmax; right: -19vmax; top: -3vh; animation-duration: 90s; animation-direction: reverse; }
+.v6-orbit i:nth-child(3) { width: 24vmax; height: 24vmax; right: -3vmax; top: 13vh; animation-duration: 40s; }
+
+/* lines: thin light streaks racing sideways */
+.v6-lines i { left: 0; width: 38vw; height: 2px; background: linear-gradient(90deg, transparent, rgba(var(--v4-a), .55), transparent); transform: translate3d(-45vw, 0, 0); animation: v6-streak 9s linear infinite; }
+.v6-lines i:nth-child(1) { top: 14%; } .v6-lines i:nth-child(2) { top: 30%; animation-duration: 12s; animation-delay: -3s; } .v6-lines i:nth-child(3) { top: 47%; animation-duration: 8s; animation-delay: -6s; }
+.v6-lines i:nth-child(4) { top: 63%; animation-duration: 14s; animation-delay: -1s; } .v6-lines i:nth-child(5) { top: 78%; animation-duration: 10s; animation-delay: -8s; } .v6-lines i:nth-child(6) { top: 90%; animation-duration: 13s; animation-delay: -4s; }
+@keyframes v6-streak { to { transform: translate3d(140vw, 0, 0); } }
+
+/* stripes: faint diagonal bands drifting */
+.v6-stripes i { left: -20%; top: -20%; right: -20%; bottom: -20%; background: repeating-linear-gradient(115deg, rgba(var(--v4-a), .07) 0 2px, transparent 2px 46px); animation: v6-slide-d 30s linear infinite; -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%); mask-image: linear-gradient(180deg, #000 0%, transparent 85%); }
+@keyframes v6-slide-d { to { transform: translate3d(46px, 0, 0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .v6-bg i, html.home-v2 .hv-title .hv-accent, html:is(.home-v2, .sk-t) body .floating-whatsapp-widget { animation: none !important; }
+  html.v6-js.sk-t main h1 { animation: none; }
+  html.v6-js .v6-r { opacity: 1; transform: none; }
+  html:is(.home-v2, .sk-t) :is(button, a):hover { transform: none !important; }
+}
+@media (max-width: 767px) { .v6-bg { opacity: .8; } .v6-particles i:nth-child(n+9) { display: none; } }
+
+/* light mode: no plate — the transparent neon logo gets a hair-thin deep-violet edge so the pale neon + gold read on the cream page */
+html:is(.home-v2, .sk-t)[data-theme="light"] header a > img[alt="Skilleze Technologies"],
+html:is(.home-v2, .sk-t)[data-theme="light"] footer a > img[alt="Skilleze Technologies"] {
+  filter: drop-shadow(0 0 .7px rgba(43, 26, 90, .9)) drop-shadow(0 3px 8px rgba(80, 40, 140, .2));
+}
+
+/* the decorative top glow must never be wider than its section (was widening the layout by 5-16px on phones/tablets) */
+section:first-of-type::before, main > section:first-child::before { width: min(800px, 100%) !important; max-width: 100% !important; }
+
+/* syllabus / brochure print sheets: keep their 3-column facts grid inside 320px screens */
+@media screen and (max-width: 420px) {
+  html.sk-t .bg-white.text-black.min-h-screen { padding: 20px 14px !important; }
+  html.sk-t .bg-white.text-black.min-h-screen .grid > * { min-width: 0; overflow-wrap: anywhere; }
+}
+
+/* ===================== 7. headlines — gradient ink + accent bar (styling only, text untouched) ===================== */
+html.sk-t main h1:not(.bg-white *),
+html.sk-t main h2:not(.bg-white *) {
+  background-image: linear-gradient(96deg, var(--hl-a) 0%, var(--hl-b) 58%, var(--hl-c) 100%);
+  background-size: 100% 100%; background-repeat: no-repeat;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  letter-spacing: -.022em; text-wrap: balance; padding-bottom: .08em;
+}
+html.sk-t, html.home-v2 { --hl-a: #F5F3FF; --hl-b: #C4B5FD; --hl-c: #8B5CF6; }
+html:is(.sk-t, .home-v2)[data-theme="light"] { --hl-a: #1B1038; --hl-b: #5B21B6; --hl-c: #7C3AED; }
+
+/* accent bar under every page headline */
+html:is(.sk-t, .home-v2) main :is(h1, h2):not(.bg-white *, header *, footer *, .hv-ccard *, .hv-tcard *, .hv3-card *)::after {
+  content: ''; display: block; width: 56px; height: 4px; margin-top: 14px; border-radius: 4px;
+  background: linear-gradient(90deg, #8B5CF6, #C4B5FD 72%, rgba(196, 181, 253, 0));
+  transform-origin: left center; box-shadow: 0 6px 18px -4px rgba(139, 92, 246, .55);
+}
+html:is(.sk-t, .home-v2) main h2:not(.bg-white *)::after { width: 40px; height: 3px; margin-top: 11px; }
+html:is(.sk-t, .home-v2) main :is(h1, h2).text-center::after,
+html:is(.sk-t, .home-v2) main .text-center :is(h1, h2)::after { margin-inline: auto; transform-origin: center; }
+html[data-theme="light"]:is(.sk-t, .home-v2) main :is(h1, h2)::after { background: linear-gradient(90deg, #6D28D9, #A78BFA 72%, rgba(167, 139, 250, 0)); box-shadow: 0 6px 16px -6px rgba(109, 40, 217, .45); }
+html.v6-js main h2.v6-r::after { transform: scaleX(0); transition: transform .9s cubic-bezier(.16, 1, .3, 1) .25s; }
+html.v6-js main h2.v6-in::after { transform: scaleX(1); }
+html.v6-js.sk-t main h1:not(.bg-white *)::after { animation: v6-bar 1s cubic-bezier(.16, 1, .3, 1) .35s both; }
+@keyframes v6-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { html.v6-js.sk-t main h1::after { animation: none; } }
+
+/* the home hero title already carries its own accent underline */
+html.home-v2 main #hv-title::after, html.home-v2 main .hv-hero h1::after { display: none !important; }
+
+
+/* ===================== 8. scroll performance ===================== */
+/* the old full-viewport grid on body::after repainted every frame (background-position); keep it static */
+body::after { animation: none !important; }
+/* ambient loops rest while the page is scrolling */
+html.v6-scrolling .v6-bg i, html.v6-scrolling .v6-bg i::after, html.v6-scrolling .hv4-fx i, html.v6-scrolling .hv3-ill,
+html.v6-scrolling .hv4-track, html.v6-scrolling .hv-float-2, html.v6-scrolling .hv-float-3, html.v6-scrolling .hv-accent { animation-play-state: paused !important; }
+
+
+/* ===================== 9. grouped course menus + hub groups ===================== */
+.courses-nav-dropdown { width: min(820px, calc(100vw - 32px)) !important; min-width: 0 !important; }
+.courses-dd-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem 1rem; align-items: start; }
+.courses-dd-col { display: flex; flex-direction: column; gap: .125rem; min-width: 0; }
+.courses-dd-col a { white-space: normal; }
+.courses-dd-h { margin: 0 0 .35rem; padding: 0 .75rem .45rem; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-text); border-bottom: 1px solid var(--line); }
+@media (max-width: 1240px) { .courses-nav-dropdown { left: -96px !important; } }
+.courses-m-h { margin-top: .75rem; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+.courses-m-h:first-of-type { margin-top: .25rem; }
+#mobile-menu { max-height: calc(100vh - 72px); overflow-y: auto; overscroll-behavior: contain; }
+li.courses-f-h { margin-top: .5rem; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .62; }
+li.courses-f-h:first-child { margin-top: 0; }
+.hub-group { display: grid; gap: 1.5rem; }
+.hub-group + .hub-group { margin-top: 1rem; }
+.hub-group-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1rem; }
+.hub-group-count { font-size: .75rem; color: var(--text-muted); }
+
+/* inner pages (phones/tablets): a backdrop-filter on the header turns it into the containing block of the fixed bottom-sheet menu and pushes the sheet off-screen.
+   The glass blur moves to a pseudo-element so the sheet is positioned against the viewport again. */
+@media (max-width: 1023px) {
+  html.sk-t body > div > header { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  html.sk-t body > div > header::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3); }
+}
